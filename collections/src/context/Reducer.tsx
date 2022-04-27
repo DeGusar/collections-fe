@@ -1,9 +1,11 @@
+import { locales } from '../shared/constants/locales';
+import localStorageKeys from '../shared/constants/localStorageKeys';
 import { StateReducer } from '../types';
 import { ActionsType } from '../types';
-import { getFromLocalStorage } from '../helpers/localStorage';
 
 export const initialState = {
-  isAuthorised: getFromLocalStorage() ? true : false,
+  isAuthorised: localStorage.getItem(localStorageKeys.API_KEY) ? true : false,
+  currentLocale: localStorage.getItem(localStorageKeys.LOCALE) || locales.EN,
 };
 
 export const reducer = (state: StateReducer, action: ActionsType) => {
@@ -12,6 +14,11 @@ export const reducer = (state: StateReducer, action: ActionsType) => {
       return {
         ...state,
         isAuthorised: action.payload,
+      };
+    case 'setLocale':
+      return {
+        ...state,
+        currentLocale: action.payload,
       };
   }
 };

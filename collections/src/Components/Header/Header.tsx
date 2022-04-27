@@ -2,12 +2,7 @@ import { AppBar, Button, Toolbar, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
-
-const headerLinks = [
-  { text: 'Home', link: '/' },
-  { text: 'collections', link: '/collections' },
-  { text: 'admin panel', link: '/admin' },
-];
+import { FormattedMessage } from 'react-intl';
 
 export function Header() {
   const {
@@ -31,11 +26,15 @@ export function Header() {
           </Button>
         )}
         <div>
-          {headerLinks.map((item) => (
-            <NavLink to={item.link} key={item.text}>
-              {item.text}
-            </NavLink>
-          ))}
+          <NavLink to="/">
+            <FormattedMessage id="header-home" />
+          </NavLink>
+          <NavLink to="/collections">
+            <FormattedMessage id="header-login" />
+          </NavLink>
+          <NavLink to="/admin">
+            <FormattedMessage id="header-admin" />
+          </NavLink>
         </div>
       </Toolbar>
     </AppBar>
