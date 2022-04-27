@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { FormattedMessage } from 'react-intl';
-import { AppContext } from '../../context/AppContext';
+import { AppContext } from '../../app/context/AppContext';
 import { locales } from '../../shared/constants/locales';
 import localStorageKeys from '../../shared/constants/localStorageKeys';
 

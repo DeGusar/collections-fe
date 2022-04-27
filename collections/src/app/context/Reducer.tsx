@@ -1,7 +1,7 @@
-import { locales } from '../shared/constants/locales';
-import localStorageKeys from '../shared/constants/localStorageKeys';
-import { StateReducer } from '../types';
-import { ActionsType } from '../types';
+import { locales } from '../../shared/constants/locales';
+import localStorageKeys from '../../shared/constants/localStorageKeys';
+import { StateReducer } from '../../types';
+import { ActionsType } from '../../types';
 
 export const initialState = {
   isAuthorised: localStorage.getItem(localStorageKeys.API_KEY) ? true : false,

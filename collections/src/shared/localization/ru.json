@@ -1,6 +1,8 @@
 {
     "header-home": "Главная",
     "header-login": "Войти",
+    "header-logout": "Выйти",
+    "header-collections": "Коллекции",
     "header-admin": "Админ панель",
     "header.language-picker": "Язык"
 }

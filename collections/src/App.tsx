@@ -5,14 +5,15 @@ import { Routes, Route } from 'react-router-dom';
 import Homepage from './Pages/Homepage';
 import Authorisation from './Pages/Authorisation';
 import Notfoundpage from './Pages/Notfoundpage';
-import { initialState } from './context/Reducer';
+import { initialState } from './app/context/Reducer';
 import { StateReducer } from './types';
-import { reducer } from './context/Reducer';
-import { AppContext } from './context/AppContext';
+import { reducer } from './app/context/Reducer';
+import { AppContext } from './app/context/AppContext';
 import { Header } from './Components/Header/Header';
 import { IntlProvider } from 'react-intl';
 import { messages } from './shared/messages/messages';
-import LocalePicker from './Components/LocalePicker/LocalePicker';
+import Collections from './Pages/Collections/Collections';
+import AdminPanel from './Pages/AdminPanel/AdminPanel';
 
 function App() {
   console.log(messages['ru']);
@@ -23,10 +24,12 @@ function App() {
       <IntlProvider locale={state.currentLocale} messages={messages[state.currentLocale]}>
         <AppContext.Provider value={{ state, dispatch }}>
           <Header />
-          <LocalePicker />
+
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/authorisation" element={<Authorisation />} />
+            <Route path="/collections" element={<Collections />} />
+            <Route path="/admin" element={<AdminPanel />} />
             <Route path="*" element={<Notfoundpage />} />
           </Routes>
         </AppContext.Provider>

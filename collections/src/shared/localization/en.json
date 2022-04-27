@@ -1,6 +1,8 @@
 {
     "header-home": "Home",
+    "header-collections": "Collections",
     "header-login": "Login",
+    "header-logout": "Logout",
     "header-admin": "Admin panel",
     "header.language-picker": "Language"
 }
