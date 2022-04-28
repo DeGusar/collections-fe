@@ -1,9 +1,10 @@
-import { AppBar, Button, Container, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Container, Toolbar, Typography, Box } from '@mui/material';
 import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../app/context/AppContext';
 import { FormattedMessage } from 'react-intl';
 import LocalePicker from '../LocalePicker/LocalePicker';
+import routes from '../../shared/constants/routes';
 
 export function Header() {
   const navigate = useNavigate();
@@ -14,27 +15,27 @@ export function Header() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar>
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1, ml: 4 }}>
+            UStore.
+          </Typography>
           <LocalePicker />
           {isAuthorised ? (
             <>
               <Button variant="outlined" sx={{ ml: 5 }} color="inherit">
                 <FormattedMessage id="header-logout" />
               </Button>
-              <Typography variant="subtitle2" component="div" sx={{ flexGrow: 1, ml: 4 }}>
-                UStore.
-              </Typography>
             </>
           ) : (
             <Button
               variant="outlined"
               sx={{ ml: 5 }}
               color="inherit"
-              onClick={() => navigate('/authorisation')}
+              onClick={() => navigate(routes.AUTHORISATION)}
             >
               <FormattedMessage id="header-login" />
             </Button>
           )}
-          <div>
+          <Box sx={{ display: 'flex', columnGap: '20px', ml: 2 }}>
             <NavLink to="/">
               <FormattedMessage id="header-home" />
             </NavLink>
@@ -44,7 +45,7 @@ export function Header() {
             <NavLink to="/admin">
               <FormattedMessage id="header-admin" />
             </NavLink>
-          </div>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

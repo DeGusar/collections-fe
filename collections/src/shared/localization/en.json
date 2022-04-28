@@ -4,5 +4,14 @@
     "header-login": "Login",
     "header-logout": "Logout",
     "header-admin": "Admin panel",
-    "header.language-picker": "Language"
+    "header.language-picker": "Language",
+    "signup-signup": "Signup",
+    "signup-firstname": "First Name",
+    "signup-lastname": "Last Name",
+    "signup-email": "Email Address",
+    "signup-password": "Password",
+    "signup-link": "Already have an account? Sign in",
+    "signup-title": "Sign up to UStore",
+    "signup-content": "and use all the features of the application"
+
 }

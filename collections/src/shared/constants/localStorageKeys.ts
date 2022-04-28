@@ -1,5 +1,8 @@
 const localStorageKeys = {
-  API_KEY: 'app.apikey',
+  TOKEN: 'app.token',
+  USER_ID: 'app.userId',
+  FIRST_NAME: 'app.firstName',
+  LAST_NAME: 'app.lastName',
   LOCALE: 'app.localization',
 };
 

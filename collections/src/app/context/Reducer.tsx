@@ -4,7 +4,7 @@ import { StateReducer } from '../../types';
 import { ActionsType } from '../../types';
 
 export const initialState = {
-  isAuthorised: localStorage.getItem(localStorageKeys.API_KEY) ? true : false,
+  isAuthorised: localStorage.getItem(localStorageKeys.TOKEN) ? true : false,
   currentLocale: localStorage.getItem(localStorageKeys.LOCALE) || locales.EN,
 };
 

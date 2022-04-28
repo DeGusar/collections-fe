@@ -4,5 +4,16 @@
     "header-logout": "Выйти",
     "header-collections": "Коллекции",
     "header-admin": "Админ панель",
-    "header.language-picker": "Язык"
+    "header.language-picker": "Язык",
+    "signup-signup": "Зарегистрироваться",
+    "signup-firstname": "Имя",
+    "signup-lastname": "Фамилия",
+    "signup-email": "Электронный адрес",
+    "signup-password": "Пароль",
+    "signup-link": "Уже с нами? Да, войти",
+    "signin-signin": "Войти",
+    "signup-title": "Зарегистрируйся в UStore",
+    "signup-content": "и используй все возможности приложения!"
+
+
 }

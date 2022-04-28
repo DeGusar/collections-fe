@@ -3,7 +3,7 @@ import './App.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Routes, Route } from 'react-router-dom';
 import Homepage from './Pages/Homepage';
-import Authorisation from './Pages/Authorisation';
+import Authorisation from './Pages/Authorisation/Authorisation';
 import Notfoundpage from './Pages/Notfoundpage';
 import { initialState } from './app/context/Reducer';
 import { StateReducer } from './types';
@@ -14,6 +14,7 @@ import { IntlProvider } from 'react-intl';
 import { messages } from './shared/messages/messages';
 import Collections from './Pages/Collections/Collections';
 import AdminPanel from './Pages/AdminPanel/AdminPanel';
+import routes from './shared/constants/routes';
 
 function App() {
   console.log(messages['ru']);
@@ -26,10 +27,10 @@ function App() {
           <Header />
 
           <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/authorisation" element={<Authorisation />} />
-            <Route path="/collections" element={<Collections />} />
-            <Route path="/admin" element={<AdminPanel />} />
+            <Route path={routes.HOME} element={<Homepage />} />
+            <Route path={routes.AUTHORISATION} element={<Authorisation />} />
+            <Route path={routes.COLLECTIONS} element={<Collections />} />
+            <Route path={routes.ADMIN} element={<AdminPanel />} />
             <Route path="*" element={<Notfoundpage />} />
           </Routes>
         </AppContext.Provider>
