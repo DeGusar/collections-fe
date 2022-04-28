@@ -6,8 +6,10 @@ import { FormattedMessage } from 'react-intl';
 import LocalePicker from '../LocalePicker/LocalePicker';
 import routes from '../../shared/constants/routes';
 import { deleteUserFromLocalStorage } from '../../shared/localStorageService/localStorageService';
+import localStorageKeys from '../../shared/constants/localStorageKeys';
 
 export function Header() {
+  const role = localStorage.getItem(localStorageKeys.ROLE);
   const navigate = useNavigate();
   const { state, dispatch } = useContext(AppContext);
   const logout = () => {
@@ -45,9 +47,11 @@ export function Header() {
             <NavLink to="/collections">
               <FormattedMessage id="header-collections" />
             </NavLink>
-            <NavLink to="/admin">
-              <FormattedMessage id="header-admin" />
-            </NavLink>
+            {role === 'admin' && (
+              <NavLink to="/admin">
+                <FormattedMessage id="header-admin" />
+              </NavLink>
+            )}
           </Box>
         </Toolbar>
       </Container>

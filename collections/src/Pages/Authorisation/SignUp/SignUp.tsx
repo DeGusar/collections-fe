@@ -14,14 +14,17 @@ import { AppContext } from '../../../app/context/AppContext';
 import { registrateUser } from '../../../shared/api/authApi';
 import { FormattedMessage } from 'react-intl';
 import { saveUserToLocalStorage } from '../../../shared/localStorageService/localStorageService';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUp(props: {
   handleClickLink: React.MouseEventHandler<HTMLAnchorElement>;
 }) {
+  const navigate = useNavigate();
   const { dispatch } = useContext(AppContext);
   const [isErrorEmail, setEmailError] = useState(false);
   const [textError, setTextError] = useState('');
   const [isOpen, handleClose] = useState(false);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -39,6 +42,7 @@ export default function SignUp(props: {
       if (response.status === 200) {
         saveUserToLocalStorage(response.data);
         dispatch({ type: 'setIsLogin', payload: true });
+        navigate('/');
       }
     } catch (e) {
       const {

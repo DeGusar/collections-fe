@@ -19,7 +19,13 @@
     "signin-remember": "Remember me",
     "signin-link": "Don't have an account? Sign Up",
     "signin-title": "Already have account?",
-    "signin-content": "Sign in to UStore!"
+    "signin-content": "Sign in to UStore!",
+
+    "admin-panel-controls-block": "Block",
+    "admin-panel-controls-unblock": "Unblock",
+    "admin-panel-controls-delete": "Delete",
+    "admin-panel-controls-admin": "Admin"
+    
 
 
 }

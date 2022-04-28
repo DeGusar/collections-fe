@@ -13,7 +13,7 @@ import { Header } from './Components/Header/Header';
 import { IntlProvider } from 'react-intl';
 import { messages } from './shared/messages/messages';
 import Collections from './Pages/Collections/Collections';
-import AdminPanel from './Pages/AdminPanel/AdminPanel';
+import { AdminPanel } from './Pages/AdminPanel/AdminPanel';
 import routes from './shared/constants/routes';
 
 function App() {

@@ -19,7 +19,7 @@ export const getUsers = () => {
 export const blockUsers = (ids: string[]) => {
   return axios.patch(
     urls.AUTH.BLOCK,
-    { body: ids },
+    { ids },
     {
       headers: {
         Authorization: `${localStorage.getItem(localStorageKeys.TOKEN)}`,
@@ -30,7 +30,7 @@ export const blockUsers = (ids: string[]) => {
 export const unblockUsers = (ids: string[]) => {
   return axios.patch(
     urls.AUTH.UNBLOCK,
-    { body: ids },
+    { ids },
     {
       headers: {
         Authorization: `${localStorage.getItem(localStorageKeys.TOKEN)}`,
@@ -39,20 +39,17 @@ export const unblockUsers = (ids: string[]) => {
   );
 };
 export const deleteUsers = (ids: string[]) => {
-  return axios.patch(
-    urls.AUTH.DELETE,
-    { body: ids },
-    {
-      headers: {
-        Authorization: `${localStorage.getItem(localStorageKeys.TOKEN)}`,
-      },
-    }
-  );
+  return axios.delete(urls.AUTH.DELETE, {
+    headers: {
+      Authorization: `${localStorage.getItem(localStorageKeys.TOKEN)}`,
+    },
+    data: { ids },
+  });
 };
 export const setAdmin = (ids: string[]) => {
   return axios.patch(
     urls.AUTH.SET_ADMIN,
-    { body: ids },
+    { ids },
     {
       headers: {
         Authorization: `${localStorage.getItem(localStorageKeys.TOKEN)}`,

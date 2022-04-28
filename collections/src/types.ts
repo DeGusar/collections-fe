@@ -1,3 +1,5 @@
+import { AlertColor } from '@mui/material';
+
 export type StateReducer = {
   isAuthorised: boolean;
   currentLocale: string;
@@ -23,4 +25,20 @@ export type UserType = {
   firstName: string;
   lastName: string;
   role: string;
+};
+
+export type SnackType = {
+  isOpen: boolean;
+  handleClose: (event?: React.SyntheticEvent | Event, reason?: string) => void;
+  severityType: AlertColor;
+  message: string;
+};
+
+export type UsersType = {
+  _id: number;
+  firstName: string;
+  email: string;
+  registration: Date;
+  lastVisit: Date;
+  status: string;
 };

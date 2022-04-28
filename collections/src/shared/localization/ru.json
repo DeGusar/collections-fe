@@ -3,7 +3,7 @@
     "header-login": "Войти",
     "header-logout": "Выйти",
     "header-collections": "Коллекции",
-    "header-admin": "Админ панель",
+    "header-admin": "Админка",
     "header.language-picker": "Язык",
     "signup-signup": "Зарегистрироваться",
     "signup-firstname": "Имя",
@@ -18,7 +18,13 @@
     "signin-remember": "Запомнить меня",
     "signin-link": "Еще не с нами? Тогда зарегистрируйся",
     "signin-title": "Уже с нами?",
-    "signin-content": "Войди в свой аккаунт UStore!"
+    "signin-content": "Войди в свой аккаунт UStore!",
+
+    "admin-panel-controls-block": "Заблокировать",
+    "admin-panel-controls-unblock": "Разблокировать",
+    "admin-panel-controls-delete": "Удалить",
+    "admin-panel-controls-admin": "Админ"
+
 
 
 }
