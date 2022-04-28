@@ -4,6 +4,7 @@ const localStorageKeys = {
   FIRST_NAME: 'app.firstName',
   LAST_NAME: 'app.lastName',
   LOCALE: 'app.localization',
+  ROLE: 'app.role',
 };
 
 export default localStorageKeys;

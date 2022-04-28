@@ -5,12 +5,15 @@ import { AppContext } from '../../app/context/AppContext';
 import { FormattedMessage } from 'react-intl';
 import LocalePicker from '../LocalePicker/LocalePicker';
 import routes from '../../shared/constants/routes';
+import { deleteUserFromLocalStorage } from '../../shared/localStorageService/localStorageService';
 
 export function Header() {
   const navigate = useNavigate();
-  const {
-    state: { isAuthorised },
-  } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
+  const logout = () => {
+    deleteUserFromLocalStorage();
+    dispatch({ type: 'setIsLogin', payload: false });
+  };
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -19,9 +22,9 @@ export function Header() {
             UStore.
           </Typography>
           <LocalePicker />
-          {isAuthorised ? (
+          {state.isAuthorised ? (
             <>
-              <Button variant="outlined" sx={{ ml: 5 }} color="inherit">
+              <Button variant="outlined" sx={{ ml: 5 }} onClick={logout} color="inherit">
                 <FormattedMessage id="header-logout" />
               </Button>
             </>

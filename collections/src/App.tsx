@@ -17,7 +17,6 @@ import AdminPanel from './Pages/AdminPanel/AdminPanel';
 import routes from './shared/constants/routes';
 
 function App() {
-  console.log(messages['ru']);
   const [state, dispatch] = useReducer(reducer, initialState as StateReducer);
   return (
     <>

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   CssBaseline,
@@ -20,6 +21,7 @@ export default function SignIn(props: {
   handleClickLink: React.MouseEventHandler<HTMLAnchorElement>;
 }) {
   const { dispatch } = useContext(AppContext);
+  const navigate = useNavigate();
   const [isPasswordError, setPasswordError] = useState(false);
   const [isEmailError, setEmailError] = useState(false);
   const [textPasswordError, setTextPasswordError] = useState('');
@@ -37,6 +39,7 @@ export default function SignIn(props: {
       if (response.status === 200) {
         saveUserToLocalStorage(response.data);
         dispatch({ type: 'setIsLogin', payload: true });
+        navigate('/');
       }
     } catch (e) {
       const {

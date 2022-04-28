@@ -4,11 +4,12 @@ import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
 
 export default function Authorisation() {
-  const [showSignin, setShowSignin] = useState(true);
+  const [showSignin, setShowSignin] = useState(false);
+
   return (
     <Box>
-      {showSignin && <SignUp handleClickLink={() => setShowSignin(false)} />}{' '}
       {!showSignin && <SignIn handleClickLink={() => setShowSignin(true)} />}
+      {showSignin && <SignUp handleClickLink={() => setShowSignin(false)} />}
     </Box>
   );
 }
