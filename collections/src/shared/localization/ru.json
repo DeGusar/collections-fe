@@ -11,9 +11,14 @@
     "signup-email": "Электронный адрес",
     "signup-password": "Пароль",
     "signup-link": "Уже с нами? Да, войти",
-    "signin-signin": "Войти",
     "signup-title": "Зарегистрируйся в UStore",
-    "signup-content": "и используй все возможности приложения!"
+    "signup-content": "и используй все возможности приложения!",
+
+    "signin-signin": "Войти",
+    "signin-remember": "Запомнить меня",
+    "signin-link": "Еще не с нами? Тогда зарегистрируйся",
+    "signin-title": "Уже с нами?",
+    "signin-content": "Войди в свой аккаунт UStore!"
 
 
 }

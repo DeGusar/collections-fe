@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Button,
   TextField,
@@ -10,6 +10,7 @@ import {
   Snackbar,
   Alert,
 } from '@mui/material';
+import { AppContext } from '../../../app/context/AppContext';
 import { registrateUser } from '../../../shared/api/authApi';
 import { FormattedMessage } from 'react-intl';
 import { saveUserToLocalStorage } from '../../../shared/localStorageService/localStorageService';
@@ -17,6 +18,7 @@ import { saveUserToLocalStorage } from '../../../shared/localStorageService/loca
 export default function SignUp(props: {
   handleClickLink: React.MouseEventHandler<HTMLAnchorElement>;
 }) {
+  const { dispatch } = useContext(AppContext);
   const [isErrorEmail, setEmailError] = useState(false);
   const [textError, setTextError] = useState('');
   const [isOpen, handleClose] = useState(false);
@@ -36,6 +38,7 @@ export default function SignUp(props: {
       });
       if (response.status === 200) {
         saveUserToLocalStorage(response.data);
+        dispatch({ type: 'setIsLogin', payload: true });
       }
     } catch (e) {
       const {

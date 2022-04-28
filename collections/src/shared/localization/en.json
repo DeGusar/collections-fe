@@ -5,6 +5,7 @@
     "header-logout": "Logout",
     "header-admin": "Admin panel",
     "header.language-picker": "Language",
+
     "signup-signup": "Signup",
     "signup-firstname": "First Name",
     "signup-lastname": "Last Name",
@@ -12,6 +13,13 @@
     "signup-password": "Password",
     "signup-link": "Already have an account? Sign in",
     "signup-title": "Sign up to UStore",
-    "signup-content": "and use all the features of the application"
+    "signup-content": "and use all the features of the application",
+
+    "signin-signin": "Signin",
+    "signin-remember": "Remember me",
+    "signin-link": "Don't have an account? Sign Up",
+    "signin-title": "Already have account?",
+    "signin-content": "Sign in to UStore!"
+
 
 }
