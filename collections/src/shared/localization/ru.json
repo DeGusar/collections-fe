@@ -23,7 +23,15 @@
     "admin-panel-controls-block": "Заблокировать",
     "admin-panel-controls-unblock": "Разблокировать",
     "admin-panel-controls-delete": "Удалить",
-    "admin-panel-controls-admin": "Админ"
+    "admin-panel-controls-admin": "Админ",
+
+    "drawer-settings-title": "Настройки",
+    "drawer-settings-theme": "Тема",
+    "drawer-settings-light": "Светлая",
+    "drawer-settings-dark": "Темная",
+    "drawer-settings-language": "Язык"
+    
+    
 
 
 

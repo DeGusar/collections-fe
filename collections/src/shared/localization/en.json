@@ -24,7 +24,13 @@
     "admin-panel-controls-block": "Block",
     "admin-panel-controls-unblock": "Unblock",
     "admin-panel-controls-delete": "Delete",
-    "admin-panel-controls-admin": "Admin"
+    "admin-panel-controls-admin": "Admin",
+
+    "drawer-settings-title": "Settings",
+    "drawer-settings-theme": "Theme",
+    "drawer-settings-light": "Light",
+    "drawer-settings-dark": "Dark",
+    "drawer-settings-language": "Language"
     
 
 

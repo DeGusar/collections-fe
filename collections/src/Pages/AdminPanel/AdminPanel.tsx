@@ -16,7 +16,6 @@ import {
 import { AlertColor } from '@mui/material';
 import { UsersType } from '../../types';
 import localStorageKeys from '../../shared/constants/localStorageKeys';
-import { FormattedMessage } from 'react-intl';
 export const AdminPanel = () => {
   const role = localStorage.getItem(localStorageKeys.ROLE);
   const id = localStorage.getItem(localStorageKeys.USER_ID);

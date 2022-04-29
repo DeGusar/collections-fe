@@ -1,12 +1,18 @@
-import { AlertColor } from '@mui/material';
+import { AlertColor, Theme } from '@mui/material';
 
 export type StateReducer = {
   isAuthorised: boolean;
   currentLocale: string;
+  isDrawerSettings: boolean;
+  isModalSearch: boolean;
+  theme: Theme;
 };
 export type ActionsType =
   | { type: 'setIsLogin'; payload: boolean }
-  | { type: 'setLocale'; payload: string };
+  | { type: 'setLocale'; payload: string }
+  | { type: 'setDrawerSettings'; payload: boolean }
+  | { type: 'setTheme'; payload: Theme }
+  | { type: 'setModalSearch' };
 
 export type LoginDataType = {
   password: string;

@@ -24,10 +24,11 @@ export function ControlBar({
       sx={{ mt: 2, justifyContent: 'space-between', flexWrap: 'nowrap', display: 'flex' }}
     >
       <Box sx={{ pl: 5 }}>
-        <Button variant="contained" onClick={handleClickBlock}>
+        <Button variant="contained" color="secondary" onClick={handleClickBlock}>
           <FormattedMessage id="admin-panel-controls-block" />
         </Button>
         <Button
+          color="secondary"
           sx={{ ml: 1 }}
           variant="contained"
           onClick={handleClickUnblock}
@@ -36,6 +37,7 @@ export function ControlBar({
           <FormattedMessage id="admin-panel-controls-unblock" />
         </Button>
         <Button
+          color="secondary"
           sx={{ ml: 1 }}
           variant="contained"
           startIcon={<DeleteIcon />}
@@ -44,6 +46,7 @@ export function ControlBar({
           <FormattedMessage id="admin-panel-controls-delete" />
         </Button>
         <Button
+          color="secondary"
           sx={{ ml: 1 }}
           variant="contained"
           startIcon={<ManageAccountsIcon />}
