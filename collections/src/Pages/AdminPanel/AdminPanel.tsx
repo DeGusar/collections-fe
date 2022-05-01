@@ -3,12 +3,10 @@ import { DataGrid, GridRowParams } from '@mui/x-data-grid';
 import LinearProgress from '@mui/material/LinearProgress';
 import { ControlBar } from './ControlsBar/ControlsBar';
 import { columns } from './Colums/colums';
-
 import { Snack } from './Snack/Snack';
 import {
   blockUsers,
   deleteUsers,
-  /*  genereateUsers, */
   getUsers,
   setAdmin,
   unblockUsers,

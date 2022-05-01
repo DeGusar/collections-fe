@@ -9,8 +9,10 @@ import localStorageKeys from '../../shared/constants/localStorageKeys';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
+import { useStyles } from './styles';
 
 export function Header() {
+  const classes = useStyles();
   const role = localStorage.getItem(localStorageKeys.ROLE);
   const navigate = useNavigate();
   const { state, dispatch } = useContext(AppContext);
@@ -40,15 +42,30 @@ export function Header() {
         <Typography variant="h5" component="div" sx={{ flexGrow: 1, ml: 4 }}>
           UStore.
         </Typography>
-        <Box sx={{ display: 'flex', columnGap: '20px', ml: 2 }}>
-          <NavLink className="header-link" to="/">
+        <Box className={classes.headerNav}>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${classes.navLink} ${classes.active}` : `${classes.navLink}`
+            }
+            to="/"
+          >
             <FormattedMessage id="header-home" />
           </NavLink>
-          <NavLink className="header-link" to="/collections">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${classes.navLink} ${classes.active}` : `${classes.navLink}`
+            }
+            to="/collections"
+          >
             <FormattedMessage id="header-collections" />
           </NavLink>
           {role === 'admin' && (
-            <NavLink className="header-link" to="/admin">
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? `${classes.navLink} ${classes.active}` : `${classes.navLink}`
+              }
+              to="/admin"
+            >
               <FormattedMessage id="header-admin" />
             </NavLink>
           )}

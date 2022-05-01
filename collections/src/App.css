@@ -6,41 +6,11 @@
   height: 40vmin;
   pointer-events: none;
 }
-.header-link {
-  position: relative;
-  color: white;
-  text-decoration: none;
+.kiHXWb {
+  flex-grow: 1 !important;
 }
-.header-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-.active::after {
-  content: "";
-  position: absolute;
-  top: 110%;
-  left: -10%;
-  width: 120%;
-  height: 2px;
-  background: #90caf9;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 1s;
-}
-.header-link::after {
-  content: "";
-  position: absolute;
-  top: 110%;
-  left: -10%;
-  width: 120%;
-  height: 2px;
-  background: #90caf9;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 1s;
-}
-.active-locale {
-  font-size: 60px;
+.fVfcRr .file-types {
+  max-width: 130px !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {

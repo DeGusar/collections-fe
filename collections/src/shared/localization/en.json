@@ -30,7 +30,20 @@
     "drawer-settings-theme": "Theme",
     "drawer-settings-light": "Light",
     "drawer-settings-dark": "Dark",
-    "drawer-settings-language": "Language"
+    "drawer-settings-language": "Language",
+
+    "modal-search-search": "Search...",
+
+    "create-collection-title": "Create Collection",
+    "create-collection-content": "Collection",
+    "create-collections-theme": "Theme",
+    "create-collections-theme-wine": "Wine",
+    "create-collections-description": "Description",
+    "create-collections-name": "Name",
+    "create-collections-theme-books": "Books",
+    "create-collections-theme-postcards": "Postcards",
+    "create-collections-theme-coins": "Coins",
+    "create-collection-upload-message": "Upload or drop a file right here"
     
 
 

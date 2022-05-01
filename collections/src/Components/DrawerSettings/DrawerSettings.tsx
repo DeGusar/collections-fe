@@ -1,5 +1,5 @@
-import { ButtonGroup, Divider, Button, Drawer, Typography, IconButton, Theme } from '@mui/material';
-import { Box } from '@mui/system';
+import { ButtonGroup, Divider, Button, Drawer, Typography, IconButton } from '@mui/material';
+import { Box } from '@mui/material';
 import { FormattedMessage } from 'react-intl';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -10,36 +10,8 @@ import { lightTheme } from '../../app/themes/lightTheme';
 import { darkTheme } from '../../app/themes/darkTheme';
 import localStorageKeys from '../../shared/constants/localStorageKeys';
 import { locales } from '../../shared/constants/locales';
-import { makeStyles } from '@mui/styles';
-
-const useStyles = makeStyles((theme: Theme) => ({
-  selected: {
-    color: theme.palette.primary.contrastText,
-    borderRadius: '10px',
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    backgroundColor: theme.palette.primary.dark,
-    borderColor: theme.palette.primary.main,
-    '&:hover': {
-      color: theme.palette.primary.dark,
-    },
-  },
-  button: {
-    borderRadius: '10px',
-    borderWidth: '1px',
-    borderStyle: 'solid',
-    borderColor: theme.palette.primary.main,
-  },
-  boxTitle: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  boxContent: {
-    width: '300px',
-    padding: '10px 20px',
-  },
-}));
+import { useStyles } from './styles';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 export const DrawerSettings = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -58,7 +30,6 @@ export const DrawerSettings = () => {
           <CloseIcon />
         </IconButton>
       </Box>
-
       <Divider />
       <Box className={classes.boxContent}>
         <Typography>
@@ -68,23 +39,23 @@ export const DrawerSettings = () => {
         <ButtonGroup size="large" sx={{ width: '100%', marginBottom: '10px' }}>
           <Button
             fullWidth
-            className={state.theme === lightTheme ? classes.selected : ''}
             onClick={() => {
               dispatch({ type: 'setTheme', payload: lightTheme });
               localStorage.setItem(localStorageKeys.THEME, 'light');
             }}
             startIcon={<LightModeIcon />}
+            className={state.theme === lightTheme ? classes.select : ''}
           >
             <FormattedMessage id="drawer-settings-light" />
           </Button>
           <Button
-            className={state.theme === darkTheme ? classes.selected : ''}
             fullWidth
             onClick={() => {
               dispatch({ type: 'setTheme', payload: darkTheme });
               localStorage.setItem(localStorageKeys.THEME, 'dark');
             }}
             startIcon={<DarkModeIcon />}
+            className={state.theme === darkTheme ? classes.select : ''}
           >
             <FormattedMessage id="drawer-settings-dark" />
           </Button>
@@ -97,7 +68,7 @@ export const DrawerSettings = () => {
             size="large"
             fullWidth
             variant="text"
-            className={state.currentLocale === locales.EN ? classes.selected : classes.button}
+            className={state.currentLocale === locales.EN ? classes.select : classes.button}
             onClick={() => {
               dispatch({ type: 'setLocale', payload: locales.EN });
               localStorage.setItem(localStorageKeys.LOCALE, locales.EN);
@@ -109,7 +80,7 @@ export const DrawerSettings = () => {
             size="large"
             fullWidth
             variant="text"
-            className={state.currentLocale === locales.RU ? classes.selected : classes.button}
+            className={state.currentLocale === locales.RU ? classes.select : classes.button}
             onClick={() => {
               dispatch({ type: 'setLocale', payload: locales.RU });
               localStorage.setItem(localStorageKeys.LOCALE, locales.RU);

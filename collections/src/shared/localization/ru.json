@@ -29,7 +29,20 @@
     "drawer-settings-theme": "Тема",
     "drawer-settings-light": "Светлая",
     "drawer-settings-dark": "Темная",
-    "drawer-settings-language": "Язык"
+    "drawer-settings-language": "Язык",
+
+    "modal-search-search": "Искать...",
+
+    "create-collection-title": "Создать коллекцию",
+    "create-collection-content": "Коллекция",
+    "create-collections-theme-wine": "Вино",
+    "create-collections-theme-books": "Книги",
+    "create-collections-theme": "Тема",
+    "create-collections-name": "Название",
+    "create-collections-description": "Описание",
+    "create-collections-theme-postcards": "Открытки",
+    "create-collections-theme-coins": "Монеты",
+    "create-collection-upload-message": "Кликни или перетяни картинку"
     
     
 
