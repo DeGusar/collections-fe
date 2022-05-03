@@ -13,7 +13,7 @@ export const SearchModal = () => {
     <Modal
       BackdropProps={{ style: { backgroundColor: 'transparent' } }}
       disablePortal={true}
-      sx={{ zIndex: '1' }}
+      sx={{ zIndex: '999' }}
       onClose={() => dispatch({ type: 'setModalSearch' })}
       open={state.isModalSearch}
     >

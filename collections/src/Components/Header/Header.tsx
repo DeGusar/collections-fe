@@ -14,6 +14,7 @@ import { useStyles } from './styles';
 export function Header() {
   const classes = useStyles();
   const role = localStorage.getItem(localStorageKeys.ROLE);
+  const userId = localStorage.getItem(localStorageKeys.USER_ID);
   const navigate = useNavigate();
   const { state, dispatch } = useContext(AppContext);
   const logout = () => {
@@ -55,7 +56,7 @@ export function Header() {
             className={({ isActive }) =>
               isActive ? `${classes.navLink} ${classes.active}` : `${classes.navLink}`
             }
-            to="/collections"
+            to={`/collections/${userId}`}
           >
             <FormattedMessage id="header-collections" />
           </NavLink>

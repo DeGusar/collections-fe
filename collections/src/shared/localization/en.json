@@ -39,11 +39,28 @@
     "create-collections-theme": "Theme",
     "create-collections-theme-wine": "Wine",
     "create-collections-description": "Description",
-    "create-collections-name": "Name",
+    "create-collections-name": "Name*",
     "create-collections-theme-books": "Books",
     "create-collections-theme-postcards": "Postcards",
     "create-collections-theme-coins": "Coins",
-    "create-collection-upload-message": "Upload or drop a file right here"
+    "create-collection-upload-message": "Upload or drop a file right here",
+    "create-collection-error-name": "Please specify name of the collection",
+    "create-collection-field-error-name": "Please specify name of the field",
+    "create-collection-error-already-exist": "You already have collection with this name",
+    "create-collection-snack-created": "Collection successfully created",
+    "create-collection-upload-loading": "Uploading...",
+    "create-collection-button-create": "Create",
+    "create-collection-error-type": "Specify type",
+    "create-collection-additional-fields-title": "Choose additional fields for items of this collection:",
+    "create-collection-error-field-exist": "You already have field with this name",
+    "create-collection-field-type": "Field type",
+    "create-collection-field-name": "Field name",
+    "create-collection-name-pattern": "Valid characters are A-z",
+
+    "breadctumps-home": "Home",
+    "breadcrumps-collections": "Collections",
+    "breadcrumps-create": "Create"
+
     
 
 

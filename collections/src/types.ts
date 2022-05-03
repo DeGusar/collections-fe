@@ -1,4 +1,5 @@
 import { AlertColor, Theme } from '@mui/material';
+import { Field } from './Pages/Collections/CreateCollection/AddAditionalFields/AddAditionalFields';
 
 export type StateReducer = {
   isAuthorised: boolean;
@@ -36,8 +37,8 @@ export type UserType = {
 export type SnackType = {
   isOpen: boolean;
   handleClose: (event?: React.SyntheticEvent | Event, reason?: string) => void;
-  severityType: AlertColor;
-  message: string;
+  severityType?: AlertColor;
+  message?: string;
 };
 
 export type UsersType = {
@@ -47,4 +48,13 @@ export type UsersType = {
   registration: Date;
   lastVisit: Date;
   status: string;
+};
+
+export type CollectionFormType = {
+  nameCollection?: string;
+  description?: string;
+  theme?: string;
+  imageSrc?: string;
+  userId?: string | null;
+  additional?: Field[];
 };

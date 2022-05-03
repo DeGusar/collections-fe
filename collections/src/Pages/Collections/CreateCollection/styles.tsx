@@ -7,6 +7,11 @@ export const useStyles = makeStyles((theme) => ({
     minHeight: 'calc(100vh - 64px)',
     padding: '30px',
   },
+  fieldTitle: {
+    width: '100%',
+    textAlign: 'left',
+    marginTop: '10px',
+  },
   paper: {
     display: 'flex',
     rowGap: '15px',
@@ -15,5 +20,14 @@ export const useStyles = makeStyles((theme) => ({
   },
   upload: {
     flexGrow: '1 ! important',
+  },
+  buttonWrap: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  buttonSubmit: {
+    width: '100%',
   },
 }));

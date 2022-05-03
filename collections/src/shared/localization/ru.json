@@ -38,11 +38,27 @@
     "create-collections-theme-wine": "Вино",
     "create-collections-theme-books": "Книги",
     "create-collections-theme": "Тема",
-    "create-collections-name": "Название",
+    "create-collections-name": "Название*",
     "create-collections-description": "Описание",
     "create-collections-theme-postcards": "Открытки",
     "create-collections-theme-coins": "Монеты",
-    "create-collection-upload-message": "Кликни или перетяни картинку"
+    "create-collection-upload-message": "Кликни или перетяни картинку",
+    "create-collection-error-name": "Укажите название коллекции",
+    "create-collection-error-already-exist": "Коллекция с таким названием уже существуют",
+    "create-collection-snack-created": "Коллекция успешно создана",
+    "create-collection-field-error-name": "Укажите название поля",
+    "create-collection-upload-loading": "Отправка...",
+    "create-collection-button-create": "Создать",
+    "create-collection-additional-fields-title": "Выбери дополнительные поля для предметов коллекции:",
+    "create-collection-error-field-exist": "Поле с таким названием уже существует",
+    "create-collection-error-type": "Выберите тип",
+    "create-collection-field-type": "Тип поля",
+    "create-collection-field-name": "Название поля",
+    "create-collection-name-pattern": "Разрешены символы A-z",
+
+    "breadctumps-home": "Главная",
+    "breadcrumps-collections": "Коллекции",
+    "breadcrumps-create": "Создать"
     
     
 

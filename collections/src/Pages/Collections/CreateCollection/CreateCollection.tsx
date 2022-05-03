@@ -1,70 +1,105 @@
-import { Box, Container, Typography, Paper, TextField, Button } from '@mui/material';
+import { Box, Container, Typography, Paper, TextField } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { useStyles } from './styles';
 import { AppContext } from '../../../app/context/AppContext';
-import { useNavigate } from 'react-router-dom';
-import routes from '../../../shared/constants/routes';
-import { FormattedMessage } from 'react-intl';
+import { useParams } from 'react-router-dom';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { LoadingButton } from '@mui/lab';
 import MenuItem from '@mui/material/MenuItem';
-import { useIntl } from 'react-intl';
 import { FileUploader } from 'react-drag-drop-files';
 import { useForm } from 'react-hook-form';
-
-export type dataFormType = {
-  nameCollection?: string;
-  description?: string;
-  theme?: string;
-};
+import { CollectionFormType } from '../../../types';
+import { createCollection } from '../../../shared/api/collectionsApi';
+import { uploadImage } from '../../../shared/api/imageApi';
+import { SnackCreate } from './Snack/Snack';
+import { AddAditionalFields, Field } from './AddAditionalFields/AddAditionalFields';
+import { regulars } from '../../../shared/constants/regularExpressions';
+import { BreadCrumps } from './BreadCrumps/BreadCrumps';
 
 export const CreateCollection = () => {
   const {
     register,
     handleSubmit,
+    setError,
+    clearErrors,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({ reValidateMode: 'onSubmit' });
+
+  const {
+    state: { theme },
+  } = useContext(AppContext);
+
+  const classes = useStyles(theme);
+
+  const [isDisable, setDisable] = useState(false);
+  const [isReset, setReset] = useState(false);
+  const [name, setName] = useState('');
+  const [descriptionCollection, setdescriptionCollection] = useState('');
+  const [isSnack, setIsSnack] = useState(false);
+  const [file, setFile] = useState('' as unknown as Blob | null);
+  const [currentSelect, setSelect] = useState('' as string | null);
+  const [imageSrc, setImageSrc] = useState('');
+  const [additionalFields, setFields] = useState([] as Field[]);
+
   const intl = useIntl();
+
+  const { userId } = useParams();
+
   const fileTypes = ['JPEG', 'PNG', 'GIF', 'JPG'];
-  const [file, setFile] = useState('' as unknown as Blob);
   const collectionsThemes = [
     `${intl.formatMessage({ id: 'create-collections-theme-wine' })}`,
     `${intl.formatMessage({ id: 'create-collections-theme-books' })}`,
     `${intl.formatMessage({ id: 'create-collections-theme-postcards' })}`,
     `${intl.formatMessage({ id: 'create-collections-theme-coins' })}`,
   ];
-  const [currentSelect, setSelect] = useState('');
-  const navigate = useNavigate();
-  const {
-    state: { theme },
-  } = useContext(AppContext);
-  const classes = useStyles(theme);
 
-  const onSubmit = (data: dataFormType) => {
-    console.log(file);
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      uploadImage(reader.result as ArrayBuffer);
-    };
+  const handleChangeImage = async (file: Blob) => {
+    if (file) {
+      setDisable(true);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = async () => {
+        const response = await uploadImage(JSON.stringify(reader.result));
+        setImageSrc(response?.data?.srcImage);
+        setDisable(false);
+      };
+    }
   };
 
-  const uploadImage = async (base64EncodedImage: ArrayBuffer) => {
+  const onSubmit = async ({ nameCollection, description, theme }: CollectionFormType) => {
     try {
-      await fetch('http://localhost:5000/images/upload', {
-        method: 'POST',
-        body: JSON.stringify({ data: base64EncodedImage }),
-        headers: { 'Content-Type': 'application/json' },
+      const response = await createCollection({
+        nameCollection,
+        description,
+        theme,
+        imageSrc,
+        userId,
+        additional: additionalFields,
       });
-    } catch (err) {
-      console.error(err);
+      if (response.status == 200) {
+        setFields([]);
+        setReset(true);
+        setImageSrc('');
+        setFile(null);
+        setSelect('');
+        setdescriptionCollection('');
+        setName('');
+        reset();
+        setIsSnack(true);
+        setReset(false);
+      }
+    } catch (e) {
+      setError('nameCollection', {
+        type: 'custom',
+        message: intl.formatMessage({ id: 'create-collection-error-already-exist' }),
+      });
     }
   };
 
   return (
     <Container maxWidth="xl">
-      <Typography variant="h4">
-        <FormattedMessage id="create-collection-title" />
-      </Typography>
+      <BreadCrumps />
       <Container maxWidth="sm">
         <Paper
           className={classes.paper}
@@ -76,26 +111,36 @@ export const CreateCollection = () => {
             <FormattedMessage id="create-collection-content" />
           </Typography>
           <TextField
-            required
+            error={errors?.nameCollection ? true : false}
+            helperText={errors?.nameCollection?.message}
             {...register('nameCollection', {
-              required: 'Поле обязательно к заполнению',
+              required: intl.formatMessage({ id: 'create-collection-error-name' }),
+              onChange: (e) => {
+                setName(e.target.value);
+                clearErrors('nameCollection');
+              },
+              pattern: {
+                value: regulars.NAME,
+                message: intl.formatMessage({ id: 'create-collection-name-pattern' }),
+              },
             })}
             fullWidth
+            value={name}
             label={intl.formatMessage({ id: 'create-collections-name' })}
           />
           <TextField
             multiline
-            required
-            {...register('description', {
-              required: 'Поле обязательно к заполнению',
-            })}
+            error={errors?.description ? true : false}
+            helperText={errors?.description?.message}
+            {...register('description', {})}
             fullWidth
+            value={descriptionCollection}
+            onChange={(e) => setdescriptionCollection(e.target.value)}
             label={intl.formatMessage({ id: 'create-collections-description' })}
           />
           <TextField
             id="outlined-select-currency"
             select
-            required
             label={intl.formatMessage({ id: 'create-collections-theme' })}
             fullWidth
             {...register('theme', {})}
@@ -110,18 +155,38 @@ export const CreateCollection = () => {
           </TextField>
           <FileUploader
             className={classes.upload}
+            fileOrFiles={file}
+            maxSize={2}
             label={intl.formatMessage({ id: 'create-collection-upload-message' })}
             handleChange={(file: Blob) => {
-              setFile(file);
-              console.log(file);
+              handleChangeImage(file);
             }}
             name="file"
             types={fileTypes}
           />
-          <Button type="submit">Create</Button>
+          <Typography className={classes.fieldTitle}>
+            <FormattedMessage id="create-collection-additional-fields-title" />
+          </Typography>
+          <AddAditionalFields
+            isReset={isReset}
+            handleSubmitField={(field) => setFields(additionalFields.concat(field))}
+          />
+          <Box className={classes.buttonWrap}>
+            <LoadingButton
+              type="submit"
+              className={classes.buttonSubmit}
+              loadingIndicator={intl.formatMessage({ id: 'create-collection-upload-loading' })}
+              size="large"
+              loading={isDisable}
+              variant="contained"
+            >
+              <FormattedMessage id="create-collection-button-create" />
+            </LoadingButton>
+          </Box>
         </Paper>
       </Container>
       <Box className={classes.container}></Box>
+      <SnackCreate isOpen={isSnack} handleClose={() => setIsSnack(false)}></SnackCreate>
     </Container>
   );
 };

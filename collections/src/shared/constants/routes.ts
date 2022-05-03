@@ -1,10 +1,11 @@
 const routes = {
   HOME: '/',
   AUTHORISATION: '/login',
-  COLLECTIONS: '/collections',
-  COLLECTION_CREATE: '/collections/create',
-  COLLECTION_BY_ID: '/collections/:id',
-  COLLECTION_EDIT: '/collections/:id/edit',
+  COLLECTIONS_ROOT: '/collections',
+  COLLECTIONS: '/collections/:userId',
+  COLLECTION_CREATE: '/collections/:userId/create',
+  COLLECTION_BY_ID: '/collections/:userId/:id',
+  COLLECTION_EDIT: '/collections/:userId/:id/edit',
   ADMIN: '/admin',
 };
 
