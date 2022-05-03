@@ -58,3 +58,18 @@ export type CollectionFormType = {
   userId?: string | null;
   additional?: Field[];
 };
+
+type Additional = {
+  type?: string;
+  name?: string;
+};
+
+export type CardCollectionType = {
+  nameCollection: string;
+  description?: string;
+  theme?: string;
+  imageSrc?: string;
+  additional?: Additional[];
+  createdAt: Date;
+  _id: string;
+};
