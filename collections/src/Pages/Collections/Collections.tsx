@@ -35,13 +35,15 @@ export default function Collections() {
           collections.map((collection: CardCollectionType) => (
             <CardCollection {...collection} key={collection._id} />
           ))}
-        <Fab
-          color="secondary"
-          className={classes.buttonAdd}
-          onClick={() => navigate(`${routes.COLLECTIONS_ROOT}/${userId}/create`)}
-        >
-          <AddIcon />
-        </Fab>
+        <Box className={classes.buttonWrap}>
+          <Fab
+            color="secondary"
+            className={classes.buttonAdd}
+            onClick={() => navigate(`${routes.COLLECTIONS_ROOT}/${userId}/create`)}
+          >
+            <AddIcon />
+          </Fab>
+        </Box>
       </Box>
     </Container>
   );
