@@ -6,13 +6,13 @@ export const useStyles = makeStyles((theme: Theme) =>
     container: {
       display: 'flex',
       minHeight: 'calc(100vh - 64px)',
-      padding: '30px',
+      padding: '15px 0',
       alignItems: 'start',
       justifyContent: 'start',
       gap: '20px',
       flexShrink: '0',
       flexWrap: 'wrap',
-      backgroundColor: `${theme.palette.grey[200]}`,
+      backgroundColor: `${theme.palette.grey[300]}`,
     },
     buttonWrap: {
       display: 'flex',
@@ -20,6 +20,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       alignSelf: 'end',
       justifyContent: 'end',
     },
-    buttonAdd: {},
+    buttonAdd: {
+      marginRight: '30px',
+      marginBottom: '10px',
+    },
   })
 );

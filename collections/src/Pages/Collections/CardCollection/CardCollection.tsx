@@ -1,34 +1,49 @@
+/* eslint-disable react/no-children-prop */
 import React from 'react';
 import {
-  Button,
   Card,
   CardActionArea,
   CardMedia,
   CardContent,
   Typography,
-  CardActions,
+  CardHeader,
+  IconButton,
 } from '@mui/material';
 import { CardCollectionType } from '../../../types';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ReactMarkdown from 'react-markdown';
+import { NavLink } from 'react-router-dom';
+import routes from '../../../shared/constants/routes';
 
-export const CardCollection = ({ nameCollection, imageSrc, description }: CardCollectionType) => {
+export const CardCollection = ({
+  nameCollection,
+  imageSrc,
+  description,
+  createdAt,
+  userId,
+  _id,
+}: CardCollectionType) => {
   return (
-    <Card sx={{ width: 'calc(25% - 60px/4 )' }}>
-      <CardActionArea>
-        <CardMedia component="img" height="200" image={imageSrc} alt="card image" />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {nameCollection}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
+    <Card>
+      <CardHeader
+        action={
+          <IconButton>
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={nameCollection}
+        subheader={createdAt}
+      />
+      <CardActionArea component={NavLink} to={`${routes.COLLECTIONS_ROOT}/${userId}/${_id}`}>
+        <CardMedia component="img" height="auto" image={imageSrc} alt="card image" />
+        <CardContent sx={{ padding: '0' }}>
+          {description && (
+            <Typography sx={{ padding: '10px', fontSize: '16px' }} variant="body1">
+              <ReactMarkdown children={description} />
+            </Typography>
+          )}
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Optins
-        </Button>
-      </CardActions>
     </Card>
   );
 };

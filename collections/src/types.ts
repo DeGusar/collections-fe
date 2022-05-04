@@ -70,6 +70,7 @@ export type CardCollectionType = {
   theme?: string;
   imageSrc?: string;
   additional?: Additional[];
-  createdAt: Date;
+  createdAt: Date | string;
+  userId?: string;
   _id: string;
 };

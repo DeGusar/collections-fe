@@ -1,6 +1,6 @@
 import { GridValueFormatterParams } from '@mui/x-data-grid';
 import date from 'date-and-time';
-import { dataFormats } from '../../../shared/constants/dataFormats';
+import { dateFormats } from '../../../shared/constants/dataFormats';
 export const columns = [
   {
     field: '_id',
@@ -17,7 +17,7 @@ export const columns = [
     flex: 1,
     valueFormatter: (params: GridValueFormatterParams<number>) => {
       const dateParams = new Date(params.value);
-      return date.format(dateParams, 'MMM DD YYYY');
+      return date.format(dateParams, `${dateFormats.DATE}`);
     },
   },
   {
@@ -27,7 +27,7 @@ export const columns = [
     flex: 1,
     valueFormatter: (params: GridValueFormatterParams<number>) => {
       const dateParams = new Date(params.value);
-      return date.format(dateParams, `${dataFormats.DATE}, ${dataFormats.TIME}`);
+      return date.format(dateParams, `${dateFormats.DATE}, ${dateFormats.TIME}`);
     },
   },
   { field: 'role', headerName: 'Role', flex: 0.5 },

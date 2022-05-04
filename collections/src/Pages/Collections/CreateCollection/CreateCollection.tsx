@@ -15,6 +15,7 @@ import { SnackCreate } from './Snack/Snack';
 import { AddAditionalFields, Field } from './AddAditionalFields/AddAditionalFields';
 import { regulars } from '../../../shared/constants/regularExpressions';
 import { BreadCrumps } from './BreadCrumps/BreadCrumps';
+import { images } from '../../../shared/constants/imagesByTheme';
 
 export const CreateCollection = () => {
   const {
@@ -47,6 +48,7 @@ export const CreateCollection = () => {
   const { userId } = useParams();
 
   const fileTypes = ['JPEG', 'PNG', 'GIF', 'JPG'];
+  const themeValues = ['wine', 'books', 'postcards', 'coins'];
   const collectionsThemes = [
     `${intl.formatMessage({ id: 'create-collections-theme-wine' })}`,
     `${intl.formatMessage({ id: 'create-collections-theme-books' })}`,
@@ -73,7 +75,7 @@ export const CreateCollection = () => {
         nameCollection,
         description,
         theme,
-        imageSrc,
+        imageSrc: imageSrc || images[`${theme}` || 'default'],
         userId,
         additional: additionalFields,
       });
@@ -98,7 +100,7 @@ export const CreateCollection = () => {
   };
 
   return (
-    <Container maxWidth="xl">
+    <Container className={classes.container} maxWidth="xl">
       <BreadCrumps />
       <Container maxWidth="sm">
         <Paper
@@ -147,8 +149,8 @@ export const CreateCollection = () => {
             value={currentSelect}
             onChange={(event) => setSelect(event.target.value)}
           >
-            {collectionsThemes.map((theme) => (
-              <MenuItem key={theme} value={theme}>
+            {collectionsThemes.map((theme, i) => (
+              <MenuItem key={theme} value={themeValues[i]}>
                 {theme}
               </MenuItem>
             ))}
@@ -185,7 +187,6 @@ export const CreateCollection = () => {
           </Box>
         </Paper>
       </Container>
-      <Box className={classes.container}></Box>
       <SnackCreate isOpen={isSnack} handleClose={() => setIsSnack(false)}></SnackCreate>
     </Container>
   );

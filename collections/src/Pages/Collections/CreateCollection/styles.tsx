@@ -1,11 +1,13 @@
 import { createStyles, makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material';
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   container: {
     display: 'flex',
     minHeight: 'calc(100vh - 64px)',
-    padding: '30px',
+    flexWrap: 'wrap',
+    padding: '15px 0',
+    backgroundColor: `${theme.palette.grey[200]}`,
   },
   fieldTitle: {
     width: '100%',

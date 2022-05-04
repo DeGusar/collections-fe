@@ -13,14 +13,14 @@ export const BreadCrumps = () => {
   const classes = useStyles(theme);
   const { userId } = useParams();
   return (
-    <Breadcrumbs aria-label="breadcrumb">
+    <Breadcrumbs className={classes.breadcrumps} aria-label="breadcrumb">
       <NavLink className={classes.navLink} to="/">
         <FormattedMessage id="breadctumps-home" />
       </NavLink>
       <NavLink className={classes.navLink} to={`${routes.COLLECTIONS_ROOT}/${userId}`}>
         <FormattedMessage id="breadcrumps-collections" />
       </NavLink>
-      <Typography color="text.primary">
+      <Typography sx={{ textDecoration: 'underline' }} color="text.primary">
         <FormattedMessage id="breadcrumps-create" />
       </Typography>
     </Breadcrumbs>
