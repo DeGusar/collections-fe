@@ -74,7 +74,7 @@ export const CardCollection = ({
         <CardHeader
           action={
             <>
-              <Tooltip title="Account settings">
+              <Tooltip title="Collection actions">
                 <IconButton onClick={handleClick}>
                   <MoreVertIcon />
                 </IconButton>

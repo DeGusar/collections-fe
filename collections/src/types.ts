@@ -75,3 +75,12 @@ export type CardCollectionType = {
   userId?: string;
   _id: string;
 };
+
+export type AdditionalFieldType = {
+  type: string;
+  name: string;
+  value?: string | boolean | number | Date;
+  field: string;
+  headerName: string;
+  flex: number;
+};
