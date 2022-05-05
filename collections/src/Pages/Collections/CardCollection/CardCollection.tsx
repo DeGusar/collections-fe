@@ -97,7 +97,12 @@ export const CardCollection = ({
                   <OpenInNewIcon sx={{ fontSize: 18, marginRight: '10px' }} />
                   <FormattedMessage id="card-collection-open" />
                 </MenuItem>
-                <MenuItem onClick={() => {}} disableRipple>
+                <MenuItem
+                  onClick={() => {
+                    navigate(`${routes.COLLECTIONS_ROOT}/${userId}/edit/${_id}`);
+                  }}
+                  disableRipple
+                >
                   <EditIcon sx={{ fontSize: 18, marginRight: '10px' }} />
                   <FormattedMessage id="card-collection-edit" />
                 </MenuItem>

@@ -57,6 +57,7 @@ export type CollectionFormType = {
   imageSrc?: string;
   userId?: string | null;
   additional?: Field[];
+  idCollection?: string;
 };
 
 type Additional = {

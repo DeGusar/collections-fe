@@ -40,6 +40,7 @@
     "create-collections-theme": "Тема",
     "create-collections-name": "Название*",
     "create-collections-description": "Описание",
+    "create-collections-theme-without": "Без темы",
     "create-collections-theme-postcards": "Открытки",
     "create-collections-theme-coins": "Монеты",
     "create-collection-upload-message": "Кликни или перетяни картинку",

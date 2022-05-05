@@ -10,6 +10,14 @@ export const getCollectionsByIdUser = (idUser: string) => {
   return axios.get(`${urls.COLLECTIONS.ROOT}/${idUser}`);
 };
 
+export const getCollectionByIdCollection = (idCollection: string) => {
+  return axios.get(`${urls.COLLECTIONS.ROOT}/collection/${idCollection}`);
+};
+
 export const deleteCollectionById = (idCollection: string) => {
   return axios.delete(`${urls.COLLECTIONS.DELETE}/${idCollection}`);
+};
+
+export const updateCollection = (collectionData: CollectionFormType) => {
+  return axios.patch(urls.COLLECTIONS.UPDATE, { ...collectionData });
 };

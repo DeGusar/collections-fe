@@ -4,8 +4,8 @@ const routes = {
   COLLECTIONS_ROOT: '/collections',
   COLLECTIONS: '/collections/:userId',
   COLLECTION_CREATE: '/collections/:userId/create',
-  COLLECTION_BY_ID: '/collections/:userId/:id',
-  COLLECTION_EDIT: '/collections/:userId/:id/edit',
+  COLLECTION_BY_ID: '/collections/:userId/:idCollection',
+  COLLECTION_EDIT: '/collections/:userId/edit/:idCollection',
   ADMIN: '/admin',
 };
 
