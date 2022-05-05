@@ -58,7 +58,16 @@
 
     "breadctumps-home": "Главная",
     "breadcrumps-collections": "Коллекции",
-    "breadcrumps-create": "Создать"
+    "breadcrumps-create": "Создать",
+    "breadcrumps-collection": "Коллекция",
+
+    "card-collection-open": "Открыть",
+    "card-collection-edit": "Редактировать",
+    "card-collection-delete": "Удалить",
+    "card-collection-cancel": "Отмена",
+    "card-collction-dialog-content": "Информация будет удалена немедленно. Восстановить ее не получится",
+    "card-collction-dialog-title": "Вы уверены что хотите удалить данную коллекцию?",
+    "card-collection-snack-deleted": "Коллекция успешно удалена"
     
     
 

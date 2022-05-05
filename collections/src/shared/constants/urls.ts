@@ -15,6 +15,7 @@ const urls = {
   COLLECTIONS: {
     ROOT: `${BASE_URL}collections`,
     CREATE: `${BASE_URL}collections/create`,
+    DELETE: `${BASE_URL}collections/delete`,
   },
   IMAGES: {
     UPLOAD: `${BASE_URL}images/upload`,

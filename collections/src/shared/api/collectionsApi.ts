@@ -9,3 +9,7 @@ export const createCollection = async (collectionData: CollectionFormType) => {
 export const getCollectionsByIdUser = (idUser: string) => {
   return axios.get(`${urls.COLLECTIONS.ROOT}/${idUser}`);
 };
+
+export const deleteCollectionById = (idCollection: string) => {
+  return axios.delete(`${urls.COLLECTIONS.DELETE}/${idCollection}`);
+};

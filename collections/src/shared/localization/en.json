@@ -59,7 +59,17 @@
 
     "breadctumps-home": "Home",
     "breadcrumps-collections": "Collections",
-    "breadcrumps-create": "Create"
+    "breadcrumps-create": "Create",
+    "breadcrumps-collection": "Collection",
+
+    "card-collection-open": "Open",
+    "card-collection-edit": "Edit",
+    "card-collection-delete": "Delete",
+    "card-collection-cancel": "Cancel",
+    "card-collction-dialog-content": "This item will be deleted immediately. This action cannot be undone",
+    "card-collction-dialog-title": "Are you sure you want delete this collection?",
+    "card-collection-snack-deleted": "Collection successfully deleted"
+
 
     
 

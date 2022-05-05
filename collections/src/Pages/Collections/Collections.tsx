@@ -12,6 +12,7 @@ import { CardCollectionType } from '../../types';
 import { Masonry } from '@mui/lab';
 import date from 'date-and-time';
 import { dateFormats } from '../../shared/constants/dataFormats';
+import { SnackCreate } from './CreateCollection/Snack/Snack';
 
 export default function Collections() {
   const navigate = useNavigate();
@@ -20,14 +21,17 @@ export default function Collections() {
     state: { theme },
   } = useContext(AppContext);
   const [collections, setCollections] = useState([] as CardCollectionType[]);
+  const [isOpenSnack, setIsOpenSnack] = useState(false);
   const classes = useStyles(theme);
 
+  const getCollections = async () => {
+    const { data } = await getCollectionsByIdUser(userId as string);
+    setCollections(data);
+  };
+
   useEffect(() => {
-    const getCard = async () => {
-      const { data } = await getCollectionsByIdUser(userId as string);
-      setCollections(data);
-    };
-    getCard();
+    getCollections();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   return (
@@ -39,6 +43,10 @@ export default function Collections() {
             const created = date.format(dateParams, dateFormats.DATE);
             return (
               <CardCollection
+                sendRequest={() => {
+                  getCollections();
+                  setIsOpenSnack(true);
+                }}
                 {...collection}
                 userId={userId}
                 createdAt={created}
@@ -56,6 +64,11 @@ export default function Collections() {
           <AddIcon />
         </Fab>
       </Box>
+      <SnackCreate
+        message="card-collection-snack-deleted"
+        isOpen={isOpenSnack}
+        handleClose={() => setIsOpenSnack(false)}
+      />
     </Container>
   );
 }

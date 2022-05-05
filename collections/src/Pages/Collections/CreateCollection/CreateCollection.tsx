@@ -187,7 +187,11 @@ export const CreateCollection = () => {
           </Box>
         </Paper>
       </Container>
-      <SnackCreate isOpen={isSnack} handleClose={() => setIsSnack(false)}></SnackCreate>
+      <SnackCreate
+        isOpen={isSnack}
+        message="create-collection-snack-created"
+        handleClose={() => setIsSnack(false)}
+      ></SnackCreate>
     </Container>
   );
 };
