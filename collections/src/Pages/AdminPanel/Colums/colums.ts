@@ -27,7 +27,7 @@ export const columns = [
     flex: 1,
     valueFormatter: (params: GridValueFormatterParams<number>) => {
       const dateParams = new Date(params.value);
-      return date.format(dateParams, `${dateFormats.DATE}, ${dateFormats.TIME}`);
+      return date.format(dateParams, `${dateFormats.TIME}`);
     },
   },
   { field: 'role', headerName: 'Role', flex: 0.5 },

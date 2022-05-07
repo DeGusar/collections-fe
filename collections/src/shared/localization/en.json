@@ -76,7 +76,15 @@
     "item-collection-error-name": "Please specify name of the item",
     "card-collection-create": "Create",
    "item-successfully-created": "Item successfully created",
-   "items-table-add-item": "Create item"
+   "items-table-add-item": "Create item",
+
+   "item-delete-dialog-title": "Are you sure you want delete this item?",
+   "item-successfully-deleted": "Item successfully deleted",
+
+   "export-button": "Export",
+   "export-download-csv": "Download as CSV",
+   "export-print-csv": "Print"
+  
   
 
 

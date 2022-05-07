@@ -75,7 +75,14 @@
     "item-collection-error-name": "Укажите название предмета",
     "card-collection-create": "Создать",
     "item-successfully-created": "Предмет коллекции успешно создан",
-    "items-table-add-item": "Создать предмет"
+    "items-table-add-item": "Создать предмет",
+
+    "item-delete-dialog-title": "Вы уверены что хотите удалить данный предмет коллекции?",
+    "item-successfully-deleted": "Предмет коллекции успешно удален",
+
+    "export-button": "Экспорт",
+    "export-download-csv": "Скачать в CSV",
+    "export-print-csv": "Печать"
     
     
 

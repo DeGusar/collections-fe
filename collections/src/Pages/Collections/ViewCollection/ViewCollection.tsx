@@ -6,23 +6,35 @@ import { Box, Button, IconButton, LinearProgress } from '@mui/material';
 import { getCollectionByIdCollection } from '../../../shared/api/collectionsApi';
 import { useParams } from 'react-router-dom';
 import { AdditionalFieldType, ItemsRowsType } from '../../../types';
-import { DataGrid, GridRowParams, GridValueGetterParams } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridRowParams,
+  GridToolbar,
+  GridToolbarContainer,
+  GridToolbarExport,
+  GridValueGetterParams,
+} from '@mui/x-data-grid';
 import { columns } from './columns';
 import { capitalize } from '../../../shared/helpers/capitalize';
 import AddIcon from '@mui/icons-material/Add';
 import { CreateItem } from './CreateItem/CreateItem';
 import { SnackCreate } from '../CreateCollection/Snack/Snack';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { getItemByIdCollection } from '../../../shared/api/itemsApi';
+import { deleteItemById, getItemByIdCollection } from '../../../shared/api/itemsApi';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { DialogDelete } from './DialogDelete/DialogDelete';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 export const ViewCollection = () => {
   const { state } = useContext(AppContext);
   const { userId, idCollection } = useParams();
 
   const [isOpenDialog, setIsOpenDialog] = useState(false);
+  const [idItemToDelete, setIdItemToDelete] = useState('');
+  const [isOpenDialogDelete, setIsOpenDialogDelete] = useState(false);
   const [additionalField, setAdditional] = useState([] as AdditionalFieldType[]);
+  const [snackMessage, setSnackMessage] = useState('');
   const [items, setItems] = useState([]);
   const intl = useIntl();
   const [isLoading, setIsLoading] = useState(false);
@@ -54,14 +66,15 @@ export const ViewCollection = () => {
     setAdditional(
       add.concat({
         field: 'Actions',
-        flex: 0.4,
+        flex: 0.5,
+        width: 120,
         renderCell: (params: GridRowParams) => {
           const onClickDelete = () => {
-            console.log(params.row._id);
+            setIdItemToDelete(params.row._id);
+            setIsOpenDialogDelete(true);
           };
-          const onClickEdit = () => {
-            console.log(params.row);
-          };
+          const onClickEdit = () => {};
+          const onClickOpen = () => {};
           return (
             <>
               <IconButton
@@ -80,6 +93,14 @@ export const ViewCollection = () => {
               >
                 <DeleteIcon />
               </IconButton>
+              <IconButton
+                color="inherit"
+                sx={{ opacity: '0.6' }}
+                onClick={onClickOpen}
+                size="small"
+              >
+                <OpenInNewIcon />
+              </IconButton>
             </>
           );
         },
@@ -97,12 +118,19 @@ export const ViewCollection = () => {
   }, []);
   useEffect(() => {
     setColumnsGrid((prevColumns) => prevColumns.concat(additionalField));
-    console.log(additionalField);
   }, [additionalField]);
 
   function EditToolbar() {
     return (
-      <Box sx={{ display: 'flex', width: '100%', justifyContent: 'start', marginLeft: '30px' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'start',
+          marginLeft: '30px',
+          columnGap: '20px',
+        }}
+      >
         <Button
           color="primary"
           startIcon={<AddIcon />}
@@ -112,9 +140,23 @@ export const ViewCollection = () => {
         >
           <FormattedMessage id="items-table-add-item" />
         </Button>
+
+        <GridToolbarExport />
       </Box>
     );
   }
+
+  const handleDelete = async () => {
+    try {
+      await deleteItemById(idItemToDelete);
+      setIsOpenDialogDelete(false);
+      getItems();
+      setSnackMessage(intl.formatMessage({ id: 'item-successfully-deleted' }));
+      setIsOpenSnack(true);
+    } catch (e) {
+      console.log('error');
+    }
+  };
 
   return (
     <>
@@ -129,6 +171,11 @@ export const ViewCollection = () => {
               Toolbar: EditToolbar,
             }}
             loading={isLoading}
+            localeText={{
+              toolbarExport: `${intl.formatMessage({ id: 'export-button' })}`,
+              toolbarExportCSV: `${intl.formatMessage({ id: 'export-download-csv' })}`,
+              toolbarExportPrint: `${intl.formatMessage({ id: 'export-print-csv' })}`,
+            }}
             pageSize={10}
             getRowId={(row) => row._id}
             autoHeight={true}
@@ -140,15 +187,26 @@ export const ViewCollection = () => {
       {isOpenDialog && (
         <CreateItem
           isOpenDialog={isOpenDialog}
-          refreshView={() => getItems()}
+          refreshView={() => {
+            getItems();
+            setSnackMessage(intl.formatMessage({ id: 'item-successfully-created' }));
+            setIsOpenSnack(true);
+          }}
           handleClick={() => setIsOpenDialog(false)}
         />
       )}
       <SnackCreate
         isOpen={isOpenSnack}
         handleClose={() => setIsOpenSnack(false)}
-        message={intl.formatMessage({ id: 'item-successfully-created' })}
+        message={snackMessage}
       ></SnackCreate>
+      {isOpenDialogDelete && (
+        <DialogDelete
+          isOpenDialog={isOpenDialogDelete}
+          handleDelete={() => handleDelete()}
+          setIsOpenDialog={() => setIsOpenDialogDelete(false)}
+        />
+      )}
     </>
   );
 };

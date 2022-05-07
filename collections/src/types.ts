@@ -117,3 +117,9 @@ export type TagType = {
   _id: string;
   value: string;
 };
+
+export type DialogDeleteType = {
+  isOpenDialog: boolean;
+  handleDelete: () => void;
+  setIsOpenDialog: () => void;
+};

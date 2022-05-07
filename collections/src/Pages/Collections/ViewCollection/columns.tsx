@@ -8,8 +8,8 @@ export const columns = [
     flex: 1,
     headerAlign: 'left',
   },
-  { field: 'nameItem', headerName: 'Name', flex: 1, editable: true },
-  { field: 'tags', headerName: 'Tags', flex: 1.2, editable: true },
+  { field: 'nameItem', headerName: 'Name', flex: 1 },
+  { field: 'tags', headerName: 'Tags', flex: 1.2 },
   {
     field: 'createdAt',
     headerName: 'Created',

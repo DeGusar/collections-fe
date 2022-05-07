@@ -6,7 +6,7 @@ import { SnackType } from '../../../../types';
 export function SnackCreate({ isOpen, handleClose, message }: SnackType) {
   return (
     <Snackbar
-      autoHideDuration={3000}
+      autoHideDuration={4000}
       open={isOpen}
       onClose={handleClose}
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
