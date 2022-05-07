@@ -69,7 +69,14 @@
     "card-collection-cancel": "Cancel",
     "card-collction-dialog-content": "This item will be deleted immediately. This action cannot be undone",
     "card-collction-dialog-title": "Are you sure you want delete this collection?",
-    "card-collection-snack-deleted": "Collection successfully deleted"
+    "card-collection-snack-deleted": "Collection successfully deleted",
+
+    "item-create-error-already-exist": "Item with this name has already exist",
+    "item-create-dialog-title": "Create item",
+    "item-collection-error-name": "Please specify name of the item",
+    "card-collection-create": "Create",
+   "item-successfully-created": "Item successfully created"
+  
 
 
     

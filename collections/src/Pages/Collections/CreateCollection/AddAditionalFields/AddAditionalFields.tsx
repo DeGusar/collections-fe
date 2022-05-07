@@ -92,11 +92,11 @@ export const AddAditionalFields = ({ isReset, handleSubmitField }: FieldsPropsTy
             required: intl.formatMessage({ id: 'create-collection-error-type' }),
           })}
         >
-          <MenuItem value="Number">Number</MenuItem>
-          <MenuItem value="String">String</MenuItem>
-          <MenuItem value="Date">Date</MenuItem>
-          <MenuItem value="Text">Text</MenuItem>
-          <MenuItem value="Checkbox">Checkbox</MenuItem>
+          <MenuItem value="number">Number</MenuItem>
+          <MenuItem value="string">String</MenuItem>
+          <MenuItem value="date">Date</MenuItem>
+          <MenuItem value="text">Text</MenuItem>
+          <MenuItem value="boolean">Checkbox</MenuItem>
         </TextField>
         <TextField
           className={classes.input}

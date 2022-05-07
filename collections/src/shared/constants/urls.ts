@@ -23,9 +23,15 @@ const urls = {
   },
   ITEMS: {
     ROOT: `${BASE_URL}items`,
+    CREATE: `${BASE_URL}items/create`,
+    DELETE: `${BASE_URL}items/delete`,
+    UPDATE: `${BASE_URL}items/update`,
   },
   COMMENTS: {
     ROOT: `${BASE_URL}comments`,
+  },
+  TAGS: {
+    ROOT: `${BASE_URL}tags`,
   },
 };
 

@@ -60,9 +60,8 @@ export type CollectionFormType = {
   idCollection?: string;
 };
 
-type Additional = {
-  type?: string;
-  name?: string;
+export type Additional = {
+  [key: string]: string | boolean | Date | string[];
 };
 
 export type CardCollectionType = {
@@ -70,7 +69,7 @@ export type CardCollectionType = {
   description?: string;
   theme?: string;
   imageSrc?: string;
-  additional?: Additional[];
+  additional: Additional[];
   createdAt: Date | string;
   userId?: string;
   _id: string;
@@ -83,4 +82,22 @@ export type AdditionalFieldType = {
   field: string;
   headerName: string;
   flex: number;
+};
+
+export type LikeType = {
+  author: string;
+};
+
+export type ItemsDataType = {
+  nameItem?: string;
+  idCollection?: string;
+  userId?: string;
+  additional?: Additional[];
+  tags?: string[];
+  likes?: LikeType[];
+};
+
+export type CreateItemProps = {
+  isOpenDialog: boolean;
+  handleClick: () => void;
 };
