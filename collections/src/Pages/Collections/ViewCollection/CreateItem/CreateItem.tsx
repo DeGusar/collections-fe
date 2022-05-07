@@ -20,7 +20,14 @@ import { useParams } from 'react-router-dom';
 import { AppContext } from '../../../../app/context/AppContext';
 import { getCollectionByIdCollection } from '../../../../shared/api/collectionsApi';
 import { createItem } from '../../../../shared/api/itemsApi';
-import { Additional, AdditionalFieldType, CreateItemProps, ItemsDataType } from '../../../../types';
+import { getAllTags } from '../../../../shared/api/tagApi';
+import {
+  Additional,
+  AdditionalFieldType,
+  CreateItemProps,
+  ItemsDataType,
+  TagType,
+} from '../../../../types';
 import { useStyles } from './styles';
 
 export const CreateItem = ({ isOpenDialog, handleClick }: CreateItemProps) => {
@@ -36,16 +43,24 @@ export const CreateItem = ({ isOpenDialog, handleClick }: CreateItemProps) => {
     formState: { errors },
   } = useForm();
   const [tags, setTags] = useState([] as string[]);
+  const [tagCloud, setTagCloud] = useState([]);
   const { idCollection, userId } = useParams();
   const [additionalFields, setAdditionalFields] = useState([] as StringMap[]);
 
-  const getCollection = async () => {
-    const { data } = await getCollectionByIdCollection(idCollection as string);
-    const { additional } = data[0];
-    setAdditionalFields(additional);
-  };
-
   useEffect(() => {
+    const getTags = async () => {
+      const { data } = await getAllTags();
+      const tags = data.map((tag: TagType) => tag.value);
+      setTagCloud(tags);
+    };
+    getTags();
+  }, []);
+  useEffect(() => {
+    const getCollection = async () => {
+      const { data } = await getCollectionByIdCollection(idCollection as string);
+      const { additional } = data[0];
+      setAdditionalFields(additional);
+    };
     getCollection();
   }, []);
 
@@ -104,7 +119,7 @@ export const CreateItem = ({ isOpenDialog, handleClick }: CreateItemProps) => {
           multiple
           filterSelectedOptions
           autoComplete={true}
-          options={tags.map((tag: string) => tag)}
+          options={tagCloud}
           onChange={(event, value) => setTags(value)}
           fullWidth
           freeSolo

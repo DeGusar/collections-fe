@@ -101,3 +101,8 @@ export type CreateItemProps = {
   isOpenDialog: boolean;
   handleClick: () => void;
 };
+
+export type TagType = {
+  _id: string;
+  value: string;
+};
