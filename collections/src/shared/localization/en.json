@@ -75,7 +75,8 @@
     "item-create-dialog-title": "Create item",
     "item-collection-error-name": "Please specify name of the item",
     "card-collection-create": "Create",
-   "item-successfully-created": "Item successfully created"
+   "item-successfully-created": "Item successfully created",
+   "items-table-add-item": "Create item"
   
 
 

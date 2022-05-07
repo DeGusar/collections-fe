@@ -88,6 +88,16 @@ export type LikeType = {
   author: string;
 };
 
+export type ItemsRowsType = {
+  _id: number;
+  nameItem?: string;
+  idCollection?: string;
+  userId?: string;
+  additional?: Additional[];
+  tags?: string[];
+  likes?: LikeType[];
+};
+
 export type ItemsDataType = {
   nameItem?: string;
   idCollection?: string;
@@ -100,6 +110,7 @@ export type ItemsDataType = {
 export type CreateItemProps = {
   isOpenDialog: boolean;
   handleClick: () => void;
+  refreshView: () => void;
 };
 
 export type TagType = {

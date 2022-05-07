@@ -74,7 +74,8 @@
     "item-create-dialog-title": "Создать предмет колллекции",
     "item-collection-error-name": "Укажите название предмета",
     "card-collection-create": "Создать",
-    "item-successfully-created": "Предмет коллекции успешно создан"
+    "item-successfully-created": "Предмет коллекции успешно создан",
+    "items-table-add-item": "Создать предмет"
     
     
 

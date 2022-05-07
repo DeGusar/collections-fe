@@ -23,6 +23,7 @@ const urls = {
   },
   ITEMS: {
     ROOT: `${BASE_URL}items`,
+    GET_BY_ID_COLLECTION: `${BASE_URL}items/collection`,
     CREATE: `${BASE_URL}items/create`,
     DELETE: `${BASE_URL}items/delete`,
     UPDATE: `${BASE_URL}items/update`,

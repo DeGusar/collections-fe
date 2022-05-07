@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { DesktopDatePicker } from '@mui/lab';
 import {
   Autocomplete,
   Button,
@@ -7,11 +8,9 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   FormControlLabel,
   TextField,
-  useRadioGroup,
 } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -21,16 +20,10 @@ import { AppContext } from '../../../../app/context/AppContext';
 import { getCollectionByIdCollection } from '../../../../shared/api/collectionsApi';
 import { createItem } from '../../../../shared/api/itemsApi';
 import { getAllTags } from '../../../../shared/api/tagApi';
-import {
-  Additional,
-  AdditionalFieldType,
-  CreateItemProps,
-  ItemsDataType,
-  TagType,
-} from '../../../../types';
+import { Additional, CreateItemProps, TagType } from '../../../../types';
 import { useStyles } from './styles';
 
-export const CreateItem = ({ isOpenDialog, handleClick }: CreateItemProps) => {
+export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateItemProps) => {
   const {
     state: { theme },
   } = useContext(AppContext);
@@ -86,6 +79,7 @@ export const CreateItem = ({ isOpenDialog, handleClick }: CreateItemProps) => {
       });
       if (response.status === 200) {
         handleClick();
+        refreshView();
       }
     } catch (e) {
       setError('nameItem', {
@@ -108,6 +102,7 @@ export const CreateItem = ({ isOpenDialog, handleClick }: CreateItemProps) => {
       <DialogContent className={classes.content}>
         <TextField
           error={errors?.nameItem ? true : false}
+          sx={{ mt: 0.5 }}
           helperText={errors?.nameItem?.message}
           {...register('nameItem', {
             required: intl.formatMessage({ id: 'item-collection-error-name' }),
@@ -135,9 +130,23 @@ export const CreateItem = ({ isOpenDialog, handleClick }: CreateItemProps) => {
             if (field.type === 'boolean') {
               return (
                 <FormControlLabel
-                  control={<Checkbox defaultChecked />}
+                  control={<Checkbox />}
                   {...register(field.name, {})}
                   label={field.name}
+                  key={field.name}
+                />
+              );
+            } else if (field.type === 'date') {
+              return (
+                <TextField
+                  label={field.name}
+                  type="date"
+                  fullWidth
+                  key={field.name}
+                  {...register(field.name, {})}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               );
             } else {

@@ -5,8 +5,19 @@ export const columns = [
   {
     field: '_id',
     headerName: 'ID',
-    flex: 0.5,
+    flex: 1,
+    headerAlign: 'left',
   },
-  { field: 'name', headerName: 'Name', flex: 0.7 },
-  { field: 'tags', headerName: 'Tags', flex: 1.2 },
+  { field: 'nameItem', headerName: 'Name', flex: 1, editable: true },
+  { field: 'tags', headerName: 'Tags', flex: 1.2, editable: true },
+  {
+    field: 'createdAt',
+    headerName: 'Created',
+    type: 'date',
+    flex: 1,
+    valueFormatter: (params: GridValueFormatterParams<number>) => {
+      const dateParams = new Date(params.value);
+      return date.format(dateParams, `${dateFormats.TIME}`);
+    },
+  },
 ];
