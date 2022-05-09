@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppContext } from '../../../app/context/AppContext';
 import { useStyles } from './styles';
-import { BreadCrumps } from './BreadCrumps/BreadCrumps';
 import { getCollectionByIdCollection, updateCollection } from '../../../shared/api/collectionsApi';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -14,6 +13,7 @@ import { uploadImage } from '../../../shared/api/imageApi';
 import { CollectionFormType } from '../../../types';
 import { images } from '../../../shared/constants/imagesByTheme';
 import routes from '../../../shared/constants/routes';
+import { BreadCrumps } from '../BreadCrumps/BreadCrumps';
 
 export const EditCollection = () => {
   const {
@@ -96,7 +96,7 @@ export const EditCollection = () => {
 
   return (
     <Container className={classes.container} maxWidth="xl">
-      <BreadCrumps />
+      <BreadCrumps currentPage={'card-collection-edit'} />
       <Container maxWidth="sm">
         <Paper
           className={classes.paper}

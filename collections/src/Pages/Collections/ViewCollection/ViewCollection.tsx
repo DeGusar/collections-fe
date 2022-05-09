@@ -2,15 +2,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../../app/context/AppContext';
 import { useStyles } from './styles';
-import { Box, Button, IconButton, LinearProgress } from '@mui/material';
+import { Box, Button, IconButton, LinearProgress, Typography } from '@mui/material';
 import { getCollectionByIdCollection } from '../../../shared/api/collectionsApi';
-import { useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { AdditionalFieldType, ItemsRowsType } from '../../../types';
 import {
   DataGrid,
   GridRowParams,
-  GridToolbar,
-  GridToolbarContainer,
   GridToolbarExport,
   GridValueGetterParams,
 } from '@mui/x-data-grid';
@@ -25,21 +23,27 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { DialogDelete } from './DialogDelete/DialogDelete';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { BreadCrumps } from '../BreadCrumps/BreadCrumps';
+import routes from '../../../shared/constants/routes';
+import { EditItem } from './EditItem/EditItem';
 
 export const ViewCollection = () => {
   const { state } = useContext(AppContext);
   const { userId, idCollection } = useParams();
+  const navigate = useNavigate();
+  const intl = useIntl();
 
   const [isOpenDialog, setIsOpenDialog] = useState(false);
+  const [isOpenDialogEdit, setIsOpenDialogEdit] = useState(false);
   const [idItemToDelete, setIdItemToDelete] = useState('');
+  const [idItemUpdate, setIdItemUpdate] = useState('');
   const [isOpenDialogDelete, setIsOpenDialogDelete] = useState(false);
   const [additionalField, setAdditional] = useState([] as AdditionalFieldType[]);
   const [snackMessage, setSnackMessage] = useState('');
   const [items, setItems] = useState([]);
-  const intl = useIntl();
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedIds, setSelectedIds] = useState([] as string[]);
   const [isOpenSnack, setIsOpenSnack] = useState(false);
+  const [nameCollection, setNameCollection] = useState('');
   const classes = useStyles(state.theme);
 
   const [columnsGrid, setColumnsGrid] = useState(columns as unknown as AdditionalFieldType[]);
@@ -51,7 +55,8 @@ export const ViewCollection = () => {
 
   const getCollection = async () => {
     const { data } = await getCollectionByIdCollection(idCollection as string);
-    const { additional } = data[0];
+    const { additional, nameCollection } = data[0];
+    setNameCollection(nameCollection);
     const add = additional.map((addField: AdditionalFieldType, i: number) => {
       return {
         field: addField.name,
@@ -67,14 +72,21 @@ export const ViewCollection = () => {
       add.concat({
         field: 'Actions',
         flex: 0.5,
-        width: 120,
+        minWidth: 120,
         renderCell: (params: GridRowParams) => {
           const onClickDelete = () => {
             setIdItemToDelete(params.row._id);
             setIsOpenDialogDelete(true);
           };
-          const onClickEdit = () => {};
-          const onClickOpen = () => {};
+          const onClickEdit = () => {
+            const idItem = params.row._id;
+            setIdItemUpdate(idItem);
+            setIsOpenDialogEdit(true);
+          };
+          const onClickOpen = () => {
+            const idItem = params.row._id;
+            navigate(`${`${routes.COLLECTIONS_ROOT}/${userId}/${idCollection}/item/${idItem}`}`);
+          };
           return (
             <>
               <IconButton
@@ -111,8 +123,10 @@ export const ViewCollection = () => {
 
   useEffect(() => {
     const getData = async () => {
+      setIsLoading(true);
       await getItems();
       await getCollection();
+      setIsLoading(false);
     };
     getData();
   }, []);
@@ -151,6 +165,7 @@ export const ViewCollection = () => {
       await deleteItemById(idItemToDelete);
       setIsOpenDialogDelete(false);
       getItems();
+      navigate(`${routes.COLLECTIONS_ROOT}/${userId}/${idCollection}`);
       setSnackMessage(intl.formatMessage({ id: 'item-successfully-deleted' }));
       setIsOpenSnack(true);
     } catch (e) {
@@ -160,10 +175,16 @@ export const ViewCollection = () => {
 
   return (
     <>
+      <BreadCrumps currentPage={'items-breadcrumps-currentPage'} />
+      <Typography variant="h5" align="center">
+        <FormattedMessage id="items-title-collection" /> {capitalize(nameCollection)}
+      </Typography>
+
       <div className="App">
-        <div style={{ height: '70vh', width: '100%', marginTop: '20px' }}>
+        <div style={{ width: '100%', marginTop: '10px' }}>
           <DataGrid
             rows={items as ItemsRowsType[]}
+            disableSelectionOnClick={true}
             columns={columnsGrid}
             editMode="row"
             components={{
@@ -189,12 +210,27 @@ export const ViewCollection = () => {
           isOpenDialog={isOpenDialog}
           refreshView={() => {
             getItems();
+            navigate(`${routes.COLLECTIONS_ROOT}/${userId}/${idCollection}`);
             setSnackMessage(intl.formatMessage({ id: 'item-successfully-created' }));
             setIsOpenSnack(true);
           }}
           handleClick={() => setIsOpenDialog(false)}
         />
       )}
+      {isOpenDialogEdit && (
+        <EditItem
+          isOpenDialog={isOpenDialogEdit}
+          idItem={idItemUpdate}
+          refreshView={() => {
+            getItems();
+            navigate(`${routes.COLLECTIONS_ROOT}/${userId}/${idCollection}`);
+            setSnackMessage(intl.formatMessage({ id: 'item-successfully-updated' }));
+            setIsOpenSnack(true);
+          }}
+          handleClick={() => setIsOpenDialogEdit(false)}
+        />
+      )}
+
       <SnackCreate
         isOpen={isOpenSnack}
         handleClose={() => setIsOpenSnack(false)}
@@ -207,6 +243,7 @@ export const ViewCollection = () => {
           setIsOpenDialog={() => setIsOpenDialogDelete(false)}
         />
       )}
+      <Outlet />
     </>
   );
 };

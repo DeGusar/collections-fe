@@ -22,6 +22,7 @@ import { CreateCollection } from './Pages/Collections/CreateCollection/CreateCol
 import { ViewCollection } from './Pages/Collections/ViewCollection/ViewCollection';
 import { EditCollection } from './Pages/Collections/EditCollection/EditCollection';
 import { StyledEngineProvider } from '@mui/material/styles';
+import { ViewItem } from './Pages/Collections/ViewCollection/ViewItem/ViewItem';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState as StateReducer);
@@ -39,7 +40,9 @@ function App() {
                 <Route path={routes.AUTHORISATION} element={<Authorisation />} />
                 <Route path={routes.COLLECTIONS} element={<Collections />} />
                 <Route path={routes.COLLECTION_CREATE} element={<CreateCollection />} />
-                <Route path={routes.COLLECTION_BY_ID} element={<ViewCollection />} />
+                <Route path={routes.COLLECTION_BY_ID} element={<ViewCollection />}>
+                  <Route path={routes.COLLECTION_ITEM} element={<ViewItem />} />
+                </Route>
                 <Route path={routes.COLLECTION_EDIT} element={<EditCollection />} />
                 <Route path={routes.ADMIN} element={<AdminPanel />} />
                 <Route path="*" element={<Notfoundpage />} />

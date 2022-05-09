@@ -34,6 +34,7 @@ const urls = {
   TAGS: {
     ROOT: `${BASE_URL}tags`,
     GETALL: `${BASE_URL}tags/all`,
+    DELETE: `${BASE_URL}tags/delete`,
   },
 };
 

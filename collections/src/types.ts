@@ -111,6 +111,14 @@ export type CreateItemProps = {
   isOpenDialog: boolean;
   handleClick: () => void;
   refreshView: () => void;
+  idItem?: string;
+};
+
+export type EditItemProps = {
+  isOpenDialog: boolean;
+  handleClick: () => void;
+  refreshView: () => void;
+  idItem: string;
 };
 
 export type TagType = {
@@ -123,3 +131,7 @@ export type DialogDeleteType = {
   handleDelete: () => void;
   setIsOpenDialog: () => void;
 };
+
+export interface StringMap {
+  [key: string]: string;
+}

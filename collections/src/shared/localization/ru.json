@@ -71,18 +71,25 @@
     "card-collection-snack-deleted": "Коллекция успешно удалена",
 
     "item-create-error-already-exist": "Предмет коллекции с таким именем уже существует",
-    "item-create-dialog-title": "Создать предмет колллекции",
+    "item-create-dialog-title": "Создать предмет коллекции",
     "item-collection-error-name": "Укажите название предмета",
+    "create-item-helper-tags": "Введите тег и нажмите Enter",
     "card-collection-create": "Создать",
     "item-successfully-created": "Предмет коллекции успешно создан",
     "items-table-add-item": "Создать предмет",
+    "items-title-collection": "Коллекция",
+    "items-breadcrumps-currentPage": "Предметы коллекции",
 
     "item-delete-dialog-title": "Вы уверены что хотите удалить данный предмет коллекции?",
     "item-successfully-deleted": "Предмет коллекции успешно удален",
 
     "export-button": "Экспорт",
     "export-download-csv": "Скачать в CSV",
-    "export-print-csv": "Печать"
+    "export-print-csv": "Печать",
+
+    "item-edit-dialog-title": "Редактировать предмет",
+    "item-edit-button": "Редактировать",
+    "item-successfully-updated": "Предмет коллекции успешно изменен"
     
     
 

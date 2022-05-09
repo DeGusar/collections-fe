@@ -14,16 +14,14 @@ import {
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useParams } from 'react-router-dom';
 import { AppContext } from '../../../../app/context/AppContext';
-import { getCollectionByIdCollection } from '../../../../shared/api/collectionsApi';
-import { createItem } from '../../../../shared/api/itemsApi';
-import { getAllTags } from '../../../../shared/api/tagApi';
+import { getItemByIdItem, updateItem } from '../../../../shared/api/itemsApi';
+import { deleteTagById, getAllTags } from '../../../../shared/api/tagApi';
 import { capitalize } from '../../../../shared/helpers/capitalize';
-import { Additional, CreateItemProps, TagType } from '../../../../types';
+import { Additional, EditItemProps, StringMap, TagType } from '../../../../types';
 import { useStyles } from './styles';
 
-export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateItemProps) => {
+export const EditItem = ({ isOpenDialog, handleClick, refreshView, idItem }: EditItemProps) => {
   const {
     state: { theme },
   } = useContext(AppContext);
@@ -33,11 +31,12 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
     register,
     handleSubmit,
     setError,
+    setValue,
     formState: { errors },
   } = useForm();
   const [tags, setTags] = useState([] as string[]);
-  const [tagCloud, setTagCloud] = useState([]);
-  const { idCollection, userId } = useParams();
+  const [tagsForRemoving, setTagsForRemoving] = useState([] as string[]);
+  const [tagCloud, setTagCloud] = useState([] as string[]);
   const [additionalFields, setAdditionalFields] = useState([] as StringMap[]);
 
   useEffect(() => {
@@ -50,18 +49,20 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
   }, []);
   useEffect(() => {
     const getCollection = async () => {
-      const { data } = await getCollectionByIdCollection(idCollection as string);
-      const { additional } = data[0];
+      const { data } = await getItemByIdItem(idItem as string);
+      const { additional, tags, nameItem } = data;
+      setTags(tags);
+      setValue('nameItem', nameItem);
       setAdditionalFields(additional);
     };
     getCollection();
   }, []);
 
-  interface StringMap {
-    [key: string]: string;
-  }
-
   const onSubmit = async (data: StringMap) => {
+    for (const tag of tagsForRemoving) {
+      console.log(tag);
+      await deleteTagById(idItem, tag);
+    }
     const additionalData = Object.keys(data)
       .splice(1)
       .map((field) => {
@@ -70,10 +71,8 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
         }
       }) as Additional[];
     try {
-      const response = await createItem({
+      const response = await updateItem(idItem, {
         nameItem: data.nameItem,
-        idCollection: idCollection,
-        userId: userId,
         additional: additionalData,
         tags: tags,
       });
@@ -90,14 +89,9 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
   };
 
   return (
-    <Dialog
-      open={isOpenDialog}
-      onClose={handleClick}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
+    <Dialog open={isOpenDialog} onClose={handleClick}>
       <DialogTitle>
-        <FormattedMessage id="item-create-dialog-title" />
+        <FormattedMessage id="item-edit-dialog-title" />
       </DialogTitle>
       <DialogContent className={classes.content}>
         <TextField
@@ -114,16 +108,17 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
           multiple
           filterSelectedOptions
           autoComplete={true}
+          value={tags}
           options={tagCloud}
           onChange={(event, value, situation, option) => {
             if (situation === 'removeOption') {
-              console.log(option?.option);
+              setTagsForRemoving((prev) => prev.concat(option?.option as string));
             }
             setTags(value);
           }}
           fullWidth
           freeSolo
-          renderTags={(value: readonly string[], getTagProps) =>
+          renderTags={(value: string[], getTagProps) =>
             value.map((option: string, index: number) => (
               <Chip {...getTagProps({ index })} variant="outlined" label={option} key={index} />
             ))
@@ -142,7 +137,7 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
             if (field.type === 'boolean') {
               return (
                 <FormControlLabel
-                  control={<Checkbox />}
+                  control={<Checkbox defaultChecked={field.value as unknown as boolean} />}
                   {...register(field.name, {})}
                   label={field.name}
                   key={field.name}
@@ -159,6 +154,7 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  defaultValue={field.value}
                 />
               );
             } else {
@@ -169,6 +165,7 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
                   fullWidth
                   multiline={field.type === 'text' ? true : false}
                   {...register(field.name, {})}
+                  defaultValue={field.value}
                 ></TextField>
               );
             }
@@ -179,7 +176,7 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
           <FormattedMessage id="card-collection-cancel" />
         </Button>
         <Button onClick={handleSubmit(onSubmit)}>
-          <FormattedMessage id="card-collection-create" />
+          <FormattedMessage id="item-edit-button" />
         </Button>
       </DialogActions>
     </Dialog>

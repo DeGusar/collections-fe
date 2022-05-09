@@ -14,7 +14,7 @@ import { uploadImage } from '../../../shared/api/imageApi';
 import { SnackCreate } from './Snack/Snack';
 import { AddAditionalFields, Field } from './AddAditionalFields/AddAditionalFields';
 import { regulars } from '../../../shared/constants/regularExpressions';
-import { BreadCrumps } from './BreadCrumps/BreadCrumps';
+import { BreadCrumps } from '../BreadCrumps/BreadCrumps';
 import { images } from '../../../shared/constants/imagesByTheme';
 
 export const CreateCollection = () => {
@@ -101,7 +101,7 @@ export const CreateCollection = () => {
 
   return (
     <Container className={classes.container} maxWidth="xl">
-      <BreadCrumps />
+      <BreadCrumps currentPage={'breadcrumps-create'} />
       <Container maxWidth="sm">
         <Paper
           className={classes.paper}
