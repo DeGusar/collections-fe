@@ -27,9 +27,11 @@ const urls = {
     CREATE: `${BASE_URL}items/create`,
     DELETE: `${BASE_URL}items/delete`,
     UPDATE: `${BASE_URL}items/update`,
+    SET_LIKE: `${BASE_URL}items/setLike`,
   },
   COMMENTS: {
     ROOT: `${BASE_URL}comments`,
+    CREATE: `${BASE_URL}comments/create`,
   },
   TAGS: {
     ROOT: `${BASE_URL}tags`,

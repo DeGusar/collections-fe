@@ -42,6 +42,7 @@ export default function SignUp(props: {
       if (response.status === 200) {
         saveUserToLocalStorage(response.data);
         dispatch({ type: 'setIsLogin', payload: true });
+        dispatch({ type: 'setName', payload: `${firtstName} ${lastName}` });
         navigate('/');
       }
     } catch (e) {
@@ -83,7 +84,7 @@ export default function SignUp(props: {
                   required
                   fullWidth
                   id="firstName"
-                  label={<FormattedMessage id="signup-signup" />}
+                  label={<FormattedMessage id="signup-firstname" />}
                   autoFocus
                 />
               </Grid>
@@ -92,9 +93,9 @@ export default function SignUp(props: {
                   required
                   fullWidth
                   id="lastName"
-                  label={<FormattedMessage id="signup-firstname" />}
+                  label={<FormattedMessage id="signup-lastname" />}
                   name="lastName"
-                  autoComplete="family-name"
+                  autoComplete="lastName"
                 />
               </Grid>
               <Grid item xs={12}>

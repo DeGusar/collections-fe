@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../../app/context/AppContext';
 import { useStyles } from './styles';
-import { Box, Button, IconButton, LinearProgress, Typography } from '@mui/material';
+import { Box, Button, IconButton, LinearProgress, Paper, Typography } from '@mui/material';
 import { getCollectionByIdCollection } from '../../../shared/api/collectionsApi';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { AdditionalFieldType, ItemsRowsType } from '../../../types';
@@ -181,8 +181,9 @@ export const ViewCollection = () => {
       </Typography>
 
       <div className="App">
-        <div style={{ width: '100%', marginTop: '10px' }}>
+        <Paper elevation={2} style={{ width: '100%', marginTop: '10px', overflow: 'hidden' }}>
           <DataGrid
+            scrollbarSize={17}
             rows={items as ItemsRowsType[]}
             disableSelectionOnClick={true}
             columns={columnsGrid}
@@ -203,7 +204,7 @@ export const ViewCollection = () => {
             rowsPerPageOptions={[10]}
             checkboxSelection={false}
           />
-        </div>
+        </Paper>
       </div>
       {isOpenDialog && (
         <CreateItem

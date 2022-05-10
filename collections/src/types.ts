@@ -7,13 +7,15 @@ export type StateReducer = {
   isDrawerSettings: boolean;
   isModalSearch: boolean;
   theme: Theme;
+  userName: string | null;
 };
 export type ActionsType =
   | { type: 'setIsLogin'; payload: boolean }
   | { type: 'setLocale'; payload: string }
   | { type: 'setDrawerSettings'; payload: boolean }
   | { type: 'setTheme'; payload: Theme }
-  | { type: 'setModalSearch' };
+  | { type: 'setModalSearch' }
+  | { type: 'setName'; payload: string };
 
 export type LoginDataType = {
   password: string;
@@ -105,6 +107,7 @@ export type ItemsDataType = {
   additional?: Additional[];
   tags?: string[];
   likes?: LikeType[];
+  createdAt?: Date | string;
 };
 
 export type CreateItemProps = {
@@ -135,3 +138,14 @@ export type DialogDeleteType = {
 export interface StringMap {
   [key: string]: string;
 }
+
+export type CommentType = {
+  value: string;
+  postedAt: Date;
+  author: string;
+};
+export type CommentPropsType = {
+  comments: CommentType[];
+  handleClick: () => void;
+  isScroll: boolean;
+};

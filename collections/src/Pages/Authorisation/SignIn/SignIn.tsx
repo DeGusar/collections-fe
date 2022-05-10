@@ -38,7 +38,9 @@ export default function SignIn(props: {
       });
       if (response.status === 200) {
         saveUserToLocalStorage(response.data);
+        const { firstName, lastName } = response.data;
         dispatch({ type: 'setIsLogin', payload: true });
+        dispatch({ type: 'setName', payload: `${firstName} ${lastName}` });
         navigate('/');
       }
     } catch (e) {

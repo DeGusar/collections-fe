@@ -11,6 +11,7 @@ export const initialState = {
   isDrawerSettings: false,
   theme: localStorage.getItem(localStorageKeys.THEME) === 'light' ? lightTheme : darkTheme,
   isModalSearch: false,
+  userName: localStorage.getItem(localStorageKeys.NAME) ?? '',
 };
 
 export const reducer = (state: StateReducer, action: ActionsType) => {
@@ -39,6 +40,11 @@ export const reducer = (state: StateReducer, action: ActionsType) => {
       return {
         ...state,
         isModalSearch: !state.isModalSearch,
+      };
+    case 'setName':
+      return {
+        ...state,
+        userName: action.payload,
       };
   }
 };

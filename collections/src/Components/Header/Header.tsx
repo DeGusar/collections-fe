@@ -20,6 +20,7 @@ export function Header() {
   const logout = () => {
     deleteUserFromLocalStorage();
     dispatch({ type: 'setIsLogin', payload: false });
+    dispatch({ type: 'setName', payload: '' });
   };
   return (
     <AppBar position="static">

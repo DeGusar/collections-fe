@@ -89,7 +89,12 @@
   
    "item-edit-dialog-title": "Edit item",
    "item-edit-button": "Edit",
-   "item-successfully-updated": "Item successfully updated"
+   "item-successfully-updated": "Item successfully updated",
+
+   "view-item-comments": "Comments",
+   "view-item-comments-create-post": "Post a Comment",
+   "view-item-comments-placeholder": "Write your comment here",
+   "view-item-comments-submit": "Submit"
   
 
 

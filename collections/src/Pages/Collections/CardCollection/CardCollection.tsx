@@ -70,7 +70,7 @@ export const CardCollection = ({
 
   return (
     <>
-      <Card>
+      <Card elevation={8}>
         <CardHeader
           action={
             <>

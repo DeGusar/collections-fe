@@ -89,7 +89,12 @@
 
     "item-edit-dialog-title": "Редактировать предмет",
     "item-edit-button": "Редактировать",
-    "item-successfully-updated": "Предмет коллекции успешно изменен"
+    "item-successfully-updated": "Предмет коллекции успешно изменен",
+
+    "view-item-comments": "Комментарии",
+    "view-item-comments-create-post": "Оставить комментарий",
+    "view-item-comments-placeholder": "Пишите комментарий здесь",
+    "view-item-comments-submit": "Отправить"
     
     
 
