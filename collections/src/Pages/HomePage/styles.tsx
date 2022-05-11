@@ -41,7 +41,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   latest: {
     backgroundColor: theme.palette.background.default,
     width: '100%',
-    minHheight: '100vh',
+    minHeight: '100vh',
     paddingBottom: '75px',
   },
   latestTitle: {
@@ -116,5 +116,33 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: '100',
     fontSize: '18px',
     lineHeight: '21px',
+  },
+  container: {
+    minHeight: '100vh',
+    height: '1px',
+  },
+  tagCloudsContainer: {
+    width: '100%',
+    minHeight: '100vh',
+    paddingBottom: '75px',
+    paddingTop: '50px',
+    backgroundColor: 'black',
+  },
+  tagsContainer: {
+    minHeight: '90%',
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  tagsCloudTitle: {
+    position: 'relative',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      bottom: '-27px',
+      left: '0',
+      width: '100%',
+      height: '3px',
+      backgroundColor: '#710707',
+    },
   },
 }));

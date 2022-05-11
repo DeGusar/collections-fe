@@ -10,6 +10,7 @@ import { SwiperImages } from './Swiper/Swiper';
 import date from 'date-and-time';
 import { useNavigate } from 'react-router-dom';
 import routes from '../../shared/constants/routes';
+import { TagsCloud } from './TagCloud/TagCloud';
 
 export default function Homepage() {
   const { state } = useContext(AppContext);
@@ -30,11 +31,19 @@ export default function Homepage() {
   useEffect(() => {
     const getTags = async () => {
       const { data } = await getAllTags();
-      console.log(data);
-      setTags(data);
+      const tags = data.map((tag: TagType) => ({
+        value: tag.value,
+        count: Math.floor(Math.random() * 20 + 11),
+        items: tag.items,
+      }));
+      setTags(tags);
     };
     getTags();
   }, []);
+
+  const handleClickOnTag = (tag: TagType) => {
+    console.log(tag);
+  };
 
   return (
     <>
@@ -91,6 +100,18 @@ export default function Homepage() {
                 </Grid>
               );
             })}
+          </Grid>
+        </Container>
+      </Box>
+      <Box className={classes.tagCloudsContainer}>
+        <Container maxWidth="xl" className={classes.container}>
+          <Typography variant="h1" className={classes.tagsCloudTitle}>
+            Tags Cloud
+          </Typography>
+          <Grid container className={classes.tagsContainer}>
+            <Grid item xs={12} xl={8}>
+              <TagsCloud tags={tags} handleClick={(tag) => handleClickOnTag(tag)} />
+            </Grid>
           </Grid>
         </Container>
       </Box>

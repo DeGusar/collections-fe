@@ -129,6 +129,8 @@ export type EditItemProps = {
 export type TagType = {
   _id: string;
   value: string;
+  count: number;
+  items: string[];
 };
 
 export type DialogDeleteType = {
@@ -150,4 +152,9 @@ export type CommentPropsType = {
   comments: CommentType[];
   handleClick: () => void;
   isScroll: boolean;
+};
+
+export type TagTypeProps = {
+  tags: TagType[];
+  handleClick: (tag: TagType) => void;
 };
