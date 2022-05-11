@@ -9,6 +9,9 @@ export const createCollection = async (collectionData: CollectionFormType) => {
 export const getCollectionsByIdUser = (idUser: string) => {
   return axios.get(`${urls.COLLECTIONS.ROOT}/${idUser}`);
 };
+export const getLatestCollections = () => {
+  return axios.get(`${urls.COLLECTIONS.ROOT}`);
+};
 
 export const getCollectionByIdCollection = (idCollection: string) => {
   return axios.get(`${urls.COLLECTIONS.ROOT}/collection/${idCollection}`);

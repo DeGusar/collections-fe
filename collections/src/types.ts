@@ -60,6 +60,7 @@ export type CollectionFormType = {
   userId?: string | null;
   additional?: Field[];
   idCollection?: string;
+  author?: string;
 };
 
 export type Additional = {
@@ -74,6 +75,7 @@ export type CardCollectionType = {
   additional: Additional[];
   createdAt: Date | string;
   userId?: string;
+  author: string;
   _id: string;
 };
 

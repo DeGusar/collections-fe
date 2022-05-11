@@ -23,7 +23,7 @@ export function Header() {
     dispatch({ type: 'setName', payload: '' });
   };
   return (
-    <AppBar position="static">
+    <AppBar position="static" className={classes.appBar}>
       <Toolbar>
         {state.isAuthorised ? (
           <>
@@ -42,7 +42,7 @@ export function Header() {
           </Button>
         )}
         <Typography variant="h5" component="div" sx={{ flexGrow: 1, ml: 4 }}>
-          UStore.
+          UStore
         </Typography>
         <Box className={classes.headerNav}>
           <NavLink

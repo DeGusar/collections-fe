@@ -2,6 +2,9 @@ import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material';
 
 export const useStyles = makeStyles((theme: Theme) => ({
+  appBar: {
+    backgroundColor: theme.palette.common.black,
+  },
   headerNav: {
     display: 'flex',
     columnGap: '30px',
@@ -12,7 +15,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     color: 'white',
     textDecoration: 'none',
     '&:hover': {
-      color: `${theme.palette.secondary.main}`,
+      color: `#b38749`,
       '&::after': {
         transform: 'scaleX(1)',
         transformOrigin: 'left',
@@ -25,14 +28,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
       left: '-10%',
       width: '120%',
       height: '2px',
-      background: `${theme.palette.secondary.main}`,
+      background: `#b38749`,
       transform: 'scaleX(0)',
       transformOrigin: 'right',
       transition: 'transform 1s',
     },
   },
   active: {
-    color: `${theme.palette.secondary.main}`,
+    color: `#b38749`,
     '&::after': {
       content: '""',
       position: 'absolute',
@@ -40,7 +43,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
       left: '-10%',
       width: '120%',
       height: '2px',
-      background: `${theme.palette.secondary.main}`,
+      background: `#b38749`,
       transform: 'scaleX(1)',
       transformOrigin: 'right',
       transition: 'transform 1s',

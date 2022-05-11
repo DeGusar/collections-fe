@@ -28,7 +28,7 @@ export const CreateCollection = () => {
   } = useForm({ reValidateMode: 'onSubmit' });
 
   const {
-    state: { theme },
+    state: { theme, userName },
   } = useContext(AppContext);
 
   const classes = useStyles(theme);
@@ -78,6 +78,7 @@ export const CreateCollection = () => {
         imageSrc: imageSrc || images[`${theme}` || 'default'],
         userId,
         additional: additionalFields,
+        author: userName as string,
       });
       if (response.status == 200) {
         setFields([]);

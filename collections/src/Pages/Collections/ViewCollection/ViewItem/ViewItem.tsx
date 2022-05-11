@@ -33,7 +33,6 @@ export const ViewItem = () => {
   const userId = localStorage.getItem(localStorageKeys.USER_ID);
   const [likes, setLikes] = useState([] as string[]);
   const [isScroll, setIsScroll] = useState(false);
-  const [likesQuantity, setLikesQuantity] = useState(0);
   const [itemData, setItemData] = useState([] as ItemsDataType);
   const [imgUrl, setImgUrl] = useState('');
   const [tags, setTags] = useState([] as string[]);
@@ -42,6 +41,10 @@ export const ViewItem = () => {
   const getLikes = async () => {
     const { data } = await getItemByIdItem(idItem as string);
     setLikes(data.likes);
+  };
+  const getComments = async () => {
+    const { data } = await getItemByIdItem(idItem as string);
+    setComments(data.comments);
   };
 
   useEffect(() => {
@@ -54,10 +57,6 @@ export const ViewItem = () => {
     };
     getData();
   }, [idItem]);
-  const getComments = async () => {
-    const { data } = await getItemByIdItem(idItem as string);
-    setComments(data.comments);
-  };
 
   useEffect(() => {
     const getImage = async (tags: string[]) => {
@@ -70,6 +69,7 @@ export const ViewItem = () => {
     setTimeout(executeScroll, 100);
     return setImgUrl('');
   }, [tags]);
+
   return (
     <Container sx={{ my: '20px' }} maxWidth="lg">
       <Card
