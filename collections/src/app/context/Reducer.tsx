@@ -9,7 +9,7 @@ export const initialState = {
   isAuthorised: localStorage.getItem(localStorageKeys.TOKEN) ? true : false,
   currentLocale: localStorage.getItem(localStorageKeys.LOCALE) || locales.EN,
   isDrawerSettings: false,
-  theme: localStorage.getItem(localStorageKeys.THEME) === 'light' ? lightTheme : darkTheme,
+  theme: localStorage.getItem(localStorageKeys.THEME) === 'dark' ? darkTheme : lightTheme,
   isModalSearch: false,
   userName: localStorage.getItem(localStorageKeys.NAME) ?? '',
 };

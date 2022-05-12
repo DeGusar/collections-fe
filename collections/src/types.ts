@@ -77,6 +77,7 @@ export type CardCollectionType = {
   userId?: string;
   author: string;
   _id: string;
+  items?: number;
 };
 
 export type AdditionalFieldType = {

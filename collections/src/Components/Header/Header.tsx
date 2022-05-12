@@ -75,18 +75,17 @@ export function Header() {
         <Box ml={4}>
           <IconButton onClick={() => dispatch({ type: 'setModalSearch' })}>
             {!state.isModalSearch ? (
-              <SearchIcon sx={{ color: 'white' }} />
+              <SearchIcon className={classes.button} />
             ) : (
-              <CloseIcon sx={{ color: 'white' }} />
+              <CloseIcon className={classes.button} />
             )}
           </IconButton>
           <IconButton
             onClick={() => {
               dispatch({ type: 'setDrawerSettings', payload: true });
-              console.log('yes');
             }}
           >
-            <SettingsIcon sx={{ color: 'white' }} />
+            <SettingsIcon className={classes.button} />
           </IconButton>
         </Box>
       </Toolbar>

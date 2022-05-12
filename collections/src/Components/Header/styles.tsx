@@ -50,4 +50,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
       zIndex: '100',
     },
   },
+  button: {
+    color: 'white',
+    '&:hover': {
+      transform: 'scale(1.1)',
+      transition: 'all 0.5s',
+      color: '#b38749',
+    },
+  },
 }));

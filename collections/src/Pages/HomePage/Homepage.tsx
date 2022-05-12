@@ -20,13 +20,14 @@ export default function Homepage() {
   const navigate = useNavigate();
 
   const [latestCollections, setLatestCollections] = useState([] as CardCollectionType[]);
+  const [biggestCollections, setBiggestCollections] = useState([] as CardCollectionType[]);
   const [tags, setTags] = useState([] as TagType[]);
 
   useEffect(() => {
     const getCollections = async () => {
       const { data } = await getLatestCollections();
-      console.log(data);
-      setLatestCollections(data.collections);
+      setLatestCollections(data.collectionsNew);
+      setBiggestCollections(data.collectionsBiggest);
     };
     getCollections();
   }, []);
@@ -96,6 +97,49 @@ export default function Homepage() {
                     </Typography>
                     <Typography className={classes.cardAuthor}>{collection.author}</Typography>
                     <Typography className={classes.cardDate}>
+                      {date.format(new Date(collection.createdAt), `${dateFormats.TIME}`)}
+                    </Typography>
+                  </Box>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Container>
+      </Box>
+      <Box className={classes.biggestCollections}>
+        <Container maxWidth="xl">
+          <Typography variant="h1" className={classes.biggestTitle}>
+            Biggest collections
+          </Typography>
+          <Grid container spacing={7} className={classes.latestCardsContainer}>
+            {biggestCollections.map((collection) => {
+              return (
+                <Grid
+                  item
+                  xs={6}
+                  xl={4}
+                  className={classes.collectionBiggestCard}
+                  onClick={() =>
+                    navigate(`${routes.COLLECTIONS_ROOT}/${collection.userId}/${collection._id}`)
+                  }
+                  key={collection.nameCollection}
+                >
+                  <img
+                    src={collection.imageSrc}
+                    alt="Collection image"
+                    className={classes.cardImage}
+                  ></img>
+                  <Box>
+                    <Typography className={classes.cardBiggestTitle}>
+                      {collection.nameCollection}
+                    </Typography>
+                    <Typography className={classes.cardBiggestAuthor}>
+                      {collection.author}
+                    </Typography>
+                    <Typography className={classes.cardBiggestItems}>
+                      Items: {collection.items}
+                    </Typography>
+                    <Typography className={classes.cardBiggestDate}>
                       {date.format(new Date(collection.createdAt), `${dateFormats.TIME}`)}
                     </Typography>
                   </Box>

@@ -120,12 +120,88 @@ export const useStyles = makeStyles((theme: Theme) => ({
     minHeight: '100vh',
     height: '1px',
   },
-  tagCloudsContainer: {
+  biggestCollections: {
     width: '100%',
     minHeight: '100vh',
     paddingBottom: '75px',
     paddingTop: '50px',
     backgroundColor: 'black',
+  },
+  biggestTitle: {
+    position: 'relative',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      bottom: '-27px',
+      left: '0',
+      width: '100%',
+      height: '3px',
+      backgroundColor: '#710707',
+    },
+  },
+  collectionBiggestCard: {
+    width: '100%',
+    cursor: 'pointer',
+    '&:hover': {
+      '& $cardBiggestTitle': {
+        position: 'relative',
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: '-10px',
+          left: '0',
+          height: '2px',
+          backgroundColor: '#710707',
+          width: '100%',
+          transition: 'all 0.5s ease-out',
+        },
+      },
+    },
+  },
+  cardBiggestAuthor: {
+    color: 'white',
+    paddingTop: '21px',
+    fontWeight: '100',
+    fontSize: '22px',
+    lineHeight: '26px',
+  },
+  cardBiggestItems: {
+    color: 'white',
+    fontWeight: '100',
+    fontSize: '22px',
+    lineHeight: '26px',
+  },
+  cardBiggestTitle: {
+    color: 'white',
+    paddingTop: '20px',
+    position: 'relative',
+    lineHeight: '35px',
+    fontSize: '32px',
+    textTransform: 'uppercase',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      bottom: '-10px',
+      left: '0',
+      height: '2px',
+      backgroundColor: '#710707',
+      width: '70%',
+      transition: 'all 0.5s ease-out',
+    },
+  },
+  cardBiggestDate: {
+    color: 'white',
+    paddingTop: '11px',
+    fontWeight: '100',
+    fontSize: '18px',
+    lineHeight: '21px',
+  },
+  tagCloudsContainer: {
+    width: '100%',
+    minHeight: '100vh',
+    paddingBottom: '75px',
+    paddingTop: '50px',
+    backgroundColor: theme.palette.background.default,
   },
   tagsContainer: {
     minHeight: '90%',
@@ -133,6 +209,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center',
   },
   tagsCloudTitle: {
+    color: theme.palette.text.secondary,
     position: 'relative',
     '&::after': {
       content: '""',
