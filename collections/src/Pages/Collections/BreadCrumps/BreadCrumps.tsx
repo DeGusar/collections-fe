@@ -24,7 +24,7 @@ export const BreadCrumps = ({ currentPage }: BreadCrumpsType) => {
       <NavLink className={classes.navLink} to={`${routes.COLLECTIONS_ROOT}/${userId}`}>
         <FormattedMessage id="breadcrumps-collections" />
       </NavLink>
-      <Typography sx={{ textDecoration: 'underline' }} color="text.primary">
+      <Typography sx={{ textDecoration: 'underline' }}>
         <FormattedMessage id={currentPage} />
       </Typography>
     </Breadcrumbs>

@@ -147,10 +147,11 @@ export const CardCollection = ({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setIsOpenDialog(false)}>
+          <Button color="secondary" onClick={() => setIsOpenDialog(false)}>
             <FormattedMessage id="card-collection-cancel" />
           </Button>
           <Button
+            color="secondary"
             onClick={() => {
               deleteCollection();
               setIsOpenDialog(false);

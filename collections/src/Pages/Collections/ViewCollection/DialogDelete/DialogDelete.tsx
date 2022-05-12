@@ -22,10 +22,10 @@ export const DialogDelete = ({ isOpenDialog, handleDelete, setIsOpenDialog }: Di
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={setIsOpenDialog}>
+        <Button color="secondary" onClick={setIsOpenDialog}>
           <FormattedMessage id="card-collection-cancel" />
         </Button>
-        <Button onClick={handleDelete} autoFocus>
+        <Button color="secondary" onClick={handleDelete} autoFocus>
           <FormattedMessage id="card-collection-delete" />
         </Button>
       </DialogActions>

@@ -17,7 +17,6 @@ import { AdminPanel } from './Pages/AdminPanel/AdminPanel';
 import routes from './shared/constants/routes';
 import { DrawerSettings } from './Components/DrawerSettings/DrawerSettings';
 import { ThemeProvider } from '@mui/material/styles';
-import { SearchModal } from './Components/SearchModal/SearchModal';
 import { CreateCollection } from './Pages/Collections/CreateCollection/CreateCollection';
 import { ViewCollection } from './Pages/Collections/ViewCollection/ViewCollection';
 import { EditCollection } from './Pages/Collections/EditCollection/EditCollection';
@@ -34,7 +33,6 @@ function App() {
           <AppContext.Provider value={{ state, dispatch }}>
             <StyledEngineProvider injectFirst>
               <Header />
-              <SearchModal />
               <Routes>
                 <Route path={routes.HOME} element={<Homepage />} />
                 <Route path={routes.AUTHORISATION} element={<Authorisation />} />

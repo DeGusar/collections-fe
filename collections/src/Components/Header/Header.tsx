@@ -1,8 +1,17 @@
-import { AppBar, Button, Toolbar, Typography, Box, IconButton } from '@mui/material';
-import React, { useContext } from 'react';
+import {
+  AppBar,
+  Button,
+  Toolbar,
+  Typography,
+  Box,
+  IconButton,
+  Paper,
+  InputBase,
+} from '@mui/material';
+import React, { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../app/context/AppContext';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import routes from '../../shared/constants/routes';
 import { deleteUserFromLocalStorage } from '../../shared/localStorageService/localStorageService';
 import localStorageKeys from '../../shared/constants/localStorageKeys';
@@ -12,11 +21,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useStyles } from './styles';
 
 export function Header() {
+  const intl = useIntl();
   const classes = useStyles();
   const role = localStorage.getItem(localStorageKeys.ROLE);
   const userId = localStorage.getItem(localStorageKeys.USER_ID);
   const navigate = useNavigate();
   const { state, dispatch } = useContext(AppContext);
+  const [isSearchBar, setIsSearchBar] = useState(false);
   const logout = () => {
     deleteUserFromLocalStorage();
     dispatch({ type: 'setIsLogin', payload: false });
@@ -72,9 +83,22 @@ export function Header() {
             </NavLink>
           )}
         </Box>
+        <Paper className={isSearchBar ? classes.paperActive : classes.paper} sx={{}}>
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder={intl.formatMessage({ id: 'modal-search-search' })}
+          />
+          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+            <SearchIcon />
+          </IconButton>
+        </Paper>
         <Box ml={4}>
-          <IconButton onClick={() => dispatch({ type: 'setModalSearch' })}>
-            {!state.isModalSearch ? (
+          <IconButton
+            onClick={() => {
+              setIsSearchBar((prev) => !prev);
+            }}
+          >
+            {!isSearchBar ? (
               <SearchIcon className={classes.button} />
             ) : (
               <CloseIcon className={classes.button} />

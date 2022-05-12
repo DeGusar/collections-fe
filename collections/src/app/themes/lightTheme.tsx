@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import { teal, cyan } from '@mui/material/colors';
 
 export const lightTheme = createTheme({
   typography: {
@@ -15,13 +14,10 @@ export const lightTheme = createTheme({
   },
   palette: {
     primary: {
-      main: teal[500],
+      main: '#b38749',
     },
     secondary: {
-      main: cyan[500],
-    },
-    text: {
-      secondary: '#9d8665',
+      main: '#710707',
     },
   },
 });

@@ -90,12 +90,7 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
   };
 
   return (
-    <Dialog
-      open={isOpenDialog}
-      onClose={handleClick}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
+    <Dialog open={isOpenDialog} onClose={handleClick}>
       <DialogTitle>
         <FormattedMessage id="item-create-dialog-title" />
       </DialogTitle>
@@ -175,10 +170,10 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
           })}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClick}>
+        <Button color="secondary" onClick={handleClick}>
           <FormattedMessage id="card-collection-cancel" />
         </Button>
-        <Button onClick={handleSubmit(onSubmit)}>
+        <Button color="secondary" onClick={handleSubmit(onSubmit)}>
           <FormattedMessage id="card-collection-create" />
         </Button>
       </DialogActions>

@@ -6,18 +6,21 @@ export const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '10px',
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: `${theme.palette.primary.main}`,
+    borderColor: `${theme.palette.secondary.main}`,
+    '&:hover': {
+      color: theme.palette.secondary.dark,
+    },
   },
   select: {
     color: theme.palette.primary.contrastText,
     borderRadius: '10px',
     borderWidth: '1px ',
     borderStyle: 'solid ',
-    backgroundColor: `${theme.palette.primary.dark}`,
-    borderColor: `${theme.palette.secondary.main}`,
+    backgroundColor: `${theme.palette.secondary.main}`,
+    borderColor: `${theme.palette.secondary.dark}`,
     '&:hover': {
-      color: theme.palette.primary.dark,
-      backgroundColor: theme.palette.primary.light,
+      /* color: theme.palette.secondary.light, */
+      backgroundColor: theme.palette.secondary.light,
     },
   },
   boxTitle: {

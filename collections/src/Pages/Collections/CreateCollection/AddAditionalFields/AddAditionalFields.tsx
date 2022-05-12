@@ -118,7 +118,7 @@ export const AddAditionalFields = ({ isReset, handleSubmitField }: FieldsPropsTy
           variant="outlined"
         />
         <Box className={classes.buttonWrapper}>
-          <IconButton color="primary" onClick={handleSubmit(onSubmit)}>
+          <IconButton color="secondary" onClick={handleSubmit(onSubmit)}>
             <AddCircleOutlinedIcon />
           </IconButton>
         </Box>

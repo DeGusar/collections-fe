@@ -83,6 +83,7 @@ export const Comments = ({ comments, handleClick, isScroll }: CommentPropsType) 
             <Box sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
               <Button
                 ref={refToScroll}
+                color="secondary"
                 onClick={async () => {
                   await updateComments(idItem as string, {
                     value: textArea,

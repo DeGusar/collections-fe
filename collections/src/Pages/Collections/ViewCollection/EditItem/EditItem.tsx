@@ -172,10 +172,10 @@ export const EditItem = ({ isOpenDialog, handleClick, refreshView, idItem }: Edi
           })}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClick}>
+        <Button color="secondary" onClick={handleClick}>
           <FormattedMessage id="card-collection-cancel" />
         </Button>
-        <Button onClick={handleSubmit(onSubmit)}>
+        <Button color="secondary" onClick={handleSubmit(onSubmit)}>
           <FormattedMessage id="item-edit-button" />
         </Button>
       </DialogActions>

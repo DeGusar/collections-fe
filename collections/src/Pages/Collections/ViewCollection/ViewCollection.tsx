@@ -142,7 +142,7 @@ export const ViewCollection = () => {
         }}
       >
         <Button
-          color="primary"
+          color="secondary"
           startIcon={<AddIcon />}
           onClick={() => {
             setIsOpenDialog(true);
@@ -151,7 +151,7 @@ export const ViewCollection = () => {
           <FormattedMessage id="items-table-add-item" />
         </Button>
 
-        <GridToolbarExport />
+        <GridToolbarExport color="secondary" />
       </Box>
     );
   }

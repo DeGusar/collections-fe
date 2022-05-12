@@ -164,6 +164,7 @@ export const EditCollection = () => {
           <Box className={classes.buttonWrap}>
             <LoadingButton
               type="submit"
+              color="secondary"
               className={classes.buttonSubmit}
               loadingIndicator={intl.formatMessage({ id: 'create-collection-upload-loading' })}
               size="large"

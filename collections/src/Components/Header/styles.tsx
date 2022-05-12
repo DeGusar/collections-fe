@@ -34,6 +34,26 @@ export const useStyles = makeStyles((theme: Theme) => ({
       transition: 'transform 1s',
     },
   },
+  paper: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    border: `1px solid ${theme.palette.text.primary}`,
+    opacity: '0',
+    pointerEvents: 'none',
+    width: '0',
+    transition: 'all 1s',
+  },
+  paperActive: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    width: '400px',
+    marginLeft: '40px',
+    border: `1px solid ${theme.palette.text.primary}`,
+    opacity: '1',
+    transition: 'all 1s',
+  },
   active: {
     color: `#b38749`,
     '&::after': {
