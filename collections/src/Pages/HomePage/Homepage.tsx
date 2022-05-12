@@ -11,6 +11,8 @@ import date from 'date-and-time';
 import { useNavigate } from 'react-router-dom';
 import routes from '../../shared/constants/routes';
 import { TagsCloud } from './TagCloud/TagCloud';
+import { Footer } from '../../Components/Footer/Footer';
+import { ButtonToTop } from './ButtonToTop/ButtonToTop';
 
 export default function Homepage() {
   const { state } = useContext(AppContext);
@@ -115,6 +117,8 @@ export default function Homepage() {
           </Grid>
         </Container>
       </Box>
+      <Footer />
+      <ButtonToTop />
     </>
   );
 }
