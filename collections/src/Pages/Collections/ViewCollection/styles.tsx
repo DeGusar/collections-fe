@@ -1,7 +1,6 @@
 import { createStyles, makeStyles } from '@mui/styles';
-import { Theme } from '@mui/material';
 
-export const useStyles = makeStyles((theme: Theme) =>
+export const useStyles = makeStyles(() =>
   createStyles({
     container: {
       display: 'flex',

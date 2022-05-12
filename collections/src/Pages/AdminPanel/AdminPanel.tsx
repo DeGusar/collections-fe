@@ -14,11 +14,9 @@ import {
 import { AlertColor } from '@mui/material';
 import { UsersType } from '../../types';
 import localStorageKeys from '../../shared/constants/localStorageKeys';
-import { useNavigate } from 'react-router-dom';
 export const AdminPanel = () => {
   const role = localStorage.getItem(localStorageKeys.ROLE);
   const id = localStorage.getItem(localStorageKeys.USER_ID);
-  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [severityType, setSeverityType] = useState('success' as AlertColor);
   const [messageSnack, setMessageSnack] = useState('');

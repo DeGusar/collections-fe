@@ -1,7 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { teal, cyan, amber } from '@mui/material/colors';
-import { palette } from '@mui/system';
-import { ThemeContext } from '@emotion/react';
+import { teal, cyan } from '@mui/material/colors';
 
 export const lightTheme = createTheme({
   typography: {

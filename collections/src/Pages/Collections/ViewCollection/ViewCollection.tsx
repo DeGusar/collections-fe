@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../../app/context/AppContext';
-import { useStyles } from './styles';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, IconButton, LinearProgress, Paper, Typography } from '@mui/material';
 import { getCollectionByIdCollection } from '../../../shared/api/collectionsApi';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
@@ -28,7 +26,6 @@ import routes from '../../../shared/constants/routes';
 import { EditItem } from './EditItem/EditItem';
 
 export const ViewCollection = () => {
-  const { state } = useContext(AppContext);
   const { userId, idCollection } = useParams();
   const navigate = useNavigate();
   const intl = useIntl();
@@ -44,7 +41,6 @@ export const ViewCollection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpenSnack, setIsOpenSnack] = useState(false);
   const [nameCollection, setNameCollection] = useState('');
-  const classes = useStyles(state.theme);
 
   const [columnsGrid, setColumnsGrid] = useState(columns as unknown as AdditionalFieldType[]);
 

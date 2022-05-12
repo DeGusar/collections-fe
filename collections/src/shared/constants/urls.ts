@@ -1,5 +1,5 @@
-/* const BASE_URL = 'https://itra-istore.herokuapp.com/'; */
-const BASE_URL = 'http://localhost:5000/';
+const BASE_URL = 'https://itra-istore.herokuapp.com/';
+/* const BASE_URL = 'http://localhost:5000/'; */
 
 const urls = {
   AUTH: {

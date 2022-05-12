@@ -1,7 +1,6 @@
 import { makeStyles } from '@mui/styles';
-import { autocompleteClasses, Theme } from '@mui/material';
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
   swiper: {
     display: 'flex',
     flexDirection: 'row',

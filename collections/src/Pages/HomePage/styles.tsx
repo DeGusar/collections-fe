@@ -1,6 +1,5 @@
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material';
-import date from 'date-and-time';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   welcome: {

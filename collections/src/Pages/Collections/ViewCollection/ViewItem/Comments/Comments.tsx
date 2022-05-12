@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Paper,
-  TextareaAutosize,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Divider, Paper, TextareaAutosize, Typography } from '@mui/material';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { CommentPropsType } from '../../../../../types';

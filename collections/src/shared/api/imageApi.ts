@@ -1,6 +1,5 @@
 import axios from 'axios';
 import urls from '../constants/urls';
-import localStorageKeys from '../constants/localStorageKeys';
 
 export const uploadImage = (base64EncodedImage: string) => {
   try {

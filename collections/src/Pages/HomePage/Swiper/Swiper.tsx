@@ -1,4 +1,3 @@
-import { Box } from '@mui/material';
 import React, { useContext } from 'react';
 import Swiper from 'react-id-swiper';
 import { AppContext } from '../../../app/context/AppContext';

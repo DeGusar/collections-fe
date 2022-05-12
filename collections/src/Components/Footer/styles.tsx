@@ -1,8 +1,6 @@
 import { makeStyles } from '@mui/styles';
-import { Theme } from '@mui/material';
-import { Scale } from '@mui/icons-material';
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
   footerSection: {
     backgroundColor: 'black',
   },

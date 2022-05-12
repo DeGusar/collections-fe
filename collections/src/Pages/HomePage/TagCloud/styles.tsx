@@ -1,8 +1,6 @@
 import { makeStyles } from '@mui/styles';
-import { autocompleteClasses, Theme } from '@mui/material';
-import { wrap } from 'module';
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
   tagCloud: {
     display: 'flex',
     justifyContent: 'center',

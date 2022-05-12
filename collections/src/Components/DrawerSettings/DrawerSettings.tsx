@@ -11,7 +11,6 @@ import { darkTheme } from '../../app/themes/darkTheme';
 import localStorageKeys from '../../shared/constants/localStorageKeys';
 import { locales } from '../../shared/constants/locales';
 import { useStyles } from './styles';
-import { StyledEngineProvider } from '@mui/material/styles';
 
 export const DrawerSettings = () => {
   const { state, dispatch } = useContext(AppContext);
