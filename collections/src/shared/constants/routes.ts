@@ -7,6 +7,7 @@ const routes = {
   COLLECTION_BY_ID: '/collections/:userId/:idCollection',
   COLLECTION_ITEM: 'item/:idItem',
   COLLECTION_EDIT: '/collections/:userId/edit/:idCollection',
+  SEARCH: '/search/:query',
   ADMIN: '/admin',
 };
 

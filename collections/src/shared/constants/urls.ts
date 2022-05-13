@@ -38,6 +38,7 @@ const urls = {
     GETALL: `${BASE_URL}tags/all`,
     DELETE: `${BASE_URL}tags/delete`,
   },
+  SEARCH: `${BASE_URL}search`,
 };
 
 export default urls;

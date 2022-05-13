@@ -94,7 +94,9 @@
    "view-item-comments": "Comments",
    "view-item-comments-create-post": "Post a Comment",
    "view-item-comments-placeholder": "Write your comment here",
-   "view-item-comments-submit": "Submit"
+   "view-item-comments-submit": "Submit",
+
+   "search-query": "Search results for query:"
   
 
 

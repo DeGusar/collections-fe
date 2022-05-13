@@ -19,6 +19,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { useStyles } from './styles';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export function Header() {
   const intl = useIntl();
@@ -28,6 +29,7 @@ export function Header() {
   const navigate = useNavigate();
   const { state, dispatch } = useContext(AppContext);
   const [isSearchBar, setIsSearchBar] = useState(false);
+  const [query, setQuery] = useState('');
   const logout = () => {
     deleteUserFromLocalStorage();
     dispatch({ type: 'setIsLogin', payload: false });
@@ -36,13 +38,7 @@ export function Header() {
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar>
-        {state.isAuthorised ? (
-          <>
-            <Button variant="outlined" sx={{ ml: 5 }} onClick={logout} color="inherit">
-              <FormattedMessage id="header-logout" />
-            </Button>
-          </>
-        ) : (
+        {!state.isAuthorised && (
           <Button
             variant="outlined"
             sx={{ ml: 5 }}
@@ -86,9 +82,19 @@ export function Header() {
         <Paper className={isSearchBar ? classes.paperActive : classes.paper} sx={{}}>
           <InputBase
             sx={{ ml: 1, flex: 1 }}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder={intl.formatMessage({ id: 'modal-search-search' })}
           />
-          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+          <IconButton
+            sx={{ p: '10px' }}
+            onClick={() => {
+              navigate(`/search/${query}`);
+              setQuery('');
+              setIsSearchBar(false);
+            }}
+            aria-label="search"
+          >
             <SearchIcon />
           </IconButton>
         </Paper>
@@ -111,6 +117,11 @@ export function Header() {
           >
             <SettingsIcon className={classes.button} />
           </IconButton>
+          {state.isAuthorised && (
+            <IconButton onClick={logout}>
+              <LogoutIcon className={classes.button} />
+            </IconButton>
+          )}
         </Box>
       </Toolbar>
     </AppBar>
