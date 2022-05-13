@@ -44,7 +44,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: '75px',
   },
   latestTitle: {
-    color: theme.palette.text.secondary,
     position: 'relative',
     margin: '50px 0',
     '&::after': {
@@ -209,7 +208,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center',
   },
   tagsCloudTitle: {
-    color: theme.palette.text.secondary,
     position: 'relative',
     '&::after': {
       content: '""',

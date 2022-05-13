@@ -70,7 +70,7 @@ export default function Homepage() {
       </Box>
       <Box className={classes.latest}>
         <Container maxWidth="xl">
-          <Typography variant="h1" className={classes.latestTitle}>
+          <Typography variant="h2" className={classes.latestTitle}>
             Latest Collections
           </Typography>
           <Grid container spacing={7} className={classes.latestCardsContainer}>
@@ -151,7 +151,7 @@ export default function Homepage() {
       </Box>
       <Box className={classes.tagCloudsContainer}>
         <Container maxWidth="xl" className={classes.container}>
-          <Typography variant="h1" className={classes.tagsCloudTitle}>
+          <Typography variant="h2" className={classes.tagsCloudTitle}>
             Tags Cloud
           </Typography>
           <Grid container className={classes.tagsContainer}>

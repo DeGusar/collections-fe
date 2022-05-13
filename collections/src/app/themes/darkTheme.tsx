@@ -7,6 +7,10 @@ export const darkTheme = createTheme({
       fontSize: 80,
       fontWeight: 500,
     },
+    h2: {
+      fontSize: 80,
+      fontWeight: 500,
+    },
     h3: {
       fontSize: 28,
       fontWeight: 300,

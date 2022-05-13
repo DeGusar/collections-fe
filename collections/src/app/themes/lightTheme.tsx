@@ -7,6 +7,11 @@ export const lightTheme = createTheme({
       fontWeight: 500,
       color: 'white',
     },
+    h2: {
+      fontSize: 80,
+      fontWeight: 500,
+      color: '#9d8665',
+    },
     h3: {
       fontSize: 28,
       fontWeight: 300,

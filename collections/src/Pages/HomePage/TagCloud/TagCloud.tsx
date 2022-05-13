@@ -5,8 +5,8 @@ import { TagType, TagTypeProps } from '../../../types';
 import { useStyles } from './styles';
 
 const options = {
-  luminosity: 'light',
-  hue: 'blue',
+  luminosity: 'dark',
+  hue: 'red, brown',
 };
 
 export const TagsCloud = ({ tags, handleClick }: TagTypeProps) => {
