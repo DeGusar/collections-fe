@@ -35,6 +35,14 @@ export function Header() {
     dispatch({ type: 'setIsLogin', payload: false });
     dispatch({ type: 'setName', payload: '' });
   };
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' && query) {
+      navigate(`/search/${query}`);
+      setQuery('');
+      setIsSearchBar(false);
+    } else return;
+  };
+
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar>
@@ -60,14 +68,16 @@ export function Header() {
           >
             <FormattedMessage id="header-home" />
           </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? `${classes.navLink} ${classes.active}` : `${classes.navLink}`
-            }
-            to={`/collections/${userId}`}
-          >
-            <FormattedMessage id="header-collections" />
-          </NavLink>
+          {state.isAuthorised && (
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? `${classes.navLink} ${classes.active}` : `${classes.navLink}`
+              }
+              to={`/collections/${userId}`}
+            >
+              <FormattedMessage id="header-collections" />
+            </NavLink>
+          )}
           {role === 'admin' && (
             <NavLink
               className={({ isActive }) =>
@@ -79,19 +89,22 @@ export function Header() {
             </NavLink>
           )}
         </Box>
-        <Paper className={isSearchBar ? classes.paperActive : classes.paper} sx={{}}>
+        <Paper className={isSearchBar ? classes.paperActive : classes.paper}>
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             value={query}
+            onKeyUp={handleKeyUp}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={intl.formatMessage({ id: 'modal-search-search' })}
           />
           <IconButton
             sx={{ p: '10px' }}
             onClick={() => {
-              navigate(`/search/${query}`);
-              setQuery('');
-              setIsSearchBar(false);
+              if (query) {
+                navigate(`/search/${query}`);
+                setQuery('');
+                setIsSearchBar(false);
+              } else return;
             }}
             aria-label="search"
           >

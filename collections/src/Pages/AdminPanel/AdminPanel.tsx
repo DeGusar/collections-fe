@@ -24,6 +24,7 @@ export const AdminPanel = () => {
   const [isOpenSnack, setIsOpenSnack] = useState(false);
 
   const [selectedIds, setSelectedIds] = useState([] as string[]);
+
   useEffect(() => {
     const fetch = async () => {
       try {

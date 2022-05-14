@@ -1,5 +1,5 @@
 /* eslint-disable react/no-children-prop */
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Card,
   CardActionArea,
@@ -29,17 +29,8 @@ import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { deleteCollectionById } from '../../../shared/api/collectionsApi';
-
-type CardPropsType = {
-  nameCollection: string;
-  description?: string;
-  theme?: string;
-  imageSrc?: string;
-  createdAt: Date | string;
-  userId?: string;
-  _id: string;
-  sendRequest: () => void;
-};
+import { AppContext } from '../../../app/context/AppContext';
+import { CardPropsType } from '../../../types';
 
 export const CardCollection = ({
   nameCollection,
@@ -51,6 +42,7 @@ export const CardCollection = ({
   sendRequest,
 }: CardPropsType) => {
   const navigate = useNavigate();
+  const { state } = useContext(AppContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isOpenDialog, setIsOpenDialog] = useState<boolean>(false);
 
@@ -97,24 +89,28 @@ export const CardCollection = ({
                   <OpenInNewIcon sx={{ fontSize: 18, marginRight: '10px' }} />
                   <FormattedMessage id="card-collection-open" />
                 </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    navigate(`${routes.COLLECTIONS_ROOT}/${userId}/edit/${_id}`);
-                  }}
-                  disableRipple
-                >
-                  <EditIcon sx={{ fontSize: 18, marginRight: '10px' }} />
-                  <FormattedMessage id="card-collection-edit" />
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    setIsOpenDialog(true);
-                  }}
-                  disableRipple
-                >
-                  <DeleteIcon sx={{ fontSize: 18, marginRight: '10px' }} />
-                  <FormattedMessage id="card-collection-delete" />
-                </MenuItem>
+                {state.isAuthorised && (
+                  <>
+                    <MenuItem
+                      onClick={() => {
+                        navigate(`${routes.COLLECTIONS_ROOT}/${userId}/edit/${_id}`);
+                      }}
+                      disableRipple
+                    >
+                      <EditIcon sx={{ fontSize: 18, marginRight: '10px' }} />
+                      <FormattedMessage id="card-collection-edit" />
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        setIsOpenDialog(true);
+                      }}
+                      disableRipple
+                    >
+                      <DeleteIcon sx={{ fontSize: 18, marginRight: '10px' }} />
+                      <FormattedMessage id="card-collection-delete" />
+                    </MenuItem>
+                  </>
+                )}
               </Menu>
             </>
           }

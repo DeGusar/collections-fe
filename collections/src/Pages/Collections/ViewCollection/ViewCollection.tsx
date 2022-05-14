@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Box, Button, IconButton, LinearProgress, Paper, Typography } from '@mui/material';
 import { getCollectionByIdCollection } from '../../../shared/api/collectionsApi';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
@@ -24,11 +24,13 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { BreadCrumps } from '../BreadCrumps/BreadCrumps';
 import routes from '../../../shared/constants/routes';
 import { EditItem } from './EditItem/EditItem';
+import { AppContext } from '../../../app/context/AppContext';
 
 export const ViewCollection = () => {
   const { userId, idCollection } = useParams();
   const navigate = useNavigate();
   const intl = useIntl();
+  const { state } = useContext(AppContext);
 
   const [isOpenDialog, setIsOpenDialog] = useState(false);
   const [isOpenDialogEdit, setIsOpenDialogEdit] = useState(false);
@@ -41,6 +43,7 @@ export const ViewCollection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpenSnack, setIsOpenSnack] = useState(false);
   const [nameCollection, setNameCollection] = useState('');
+  const [description, setDescription] = useState('');
 
   const [columnsGrid, setColumnsGrid] = useState(columns as unknown as AdditionalFieldType[]);
 
@@ -51,8 +54,9 @@ export const ViewCollection = () => {
 
   const getCollection = async () => {
     const { data } = await getCollectionByIdCollection(idCollection as string);
-    const { additional, nameCollection } = data[0];
+    const { additional, nameCollection, description } = data[0];
     setNameCollection(nameCollection);
+    setDescription(description);
     const add = additional.map((addField: AdditionalFieldType, i: number) => {
       return {
         field: addField.name,
@@ -85,22 +89,26 @@ export const ViewCollection = () => {
           };
           return (
             <>
-              <IconButton
-                color="inherit"
-                sx={{ opacity: '0.6' }}
-                size="small"
-                onClick={onClickEdit}
-              >
-                <EditIcon />
-              </IconButton>
-              <IconButton
-                color="inherit"
-                sx={{ opacity: '0.6' }}
-                onClick={onClickDelete}
-                size="small"
-              >
-                <DeleteIcon />
-              </IconButton>
+              {state.isAuthorised && (
+                <>
+                  <IconButton
+                    color="inherit"
+                    sx={{ opacity: '0.6' }}
+                    size="small"
+                    onClick={onClickEdit}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton
+                    color="inherit"
+                    sx={{ opacity: '0.6' }}
+                    onClick={onClickDelete}
+                    size="small"
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </>
+              )}
               <IconButton
                 color="inherit"
                 sx={{ opacity: '0.6' }}
@@ -141,15 +149,17 @@ export const ViewCollection = () => {
           columnGap: '20px',
         }}
       >
-        <Button
-          color="secondary"
-          startIcon={<AddIcon />}
-          onClick={() => {
-            setIsOpenDialog(true);
-          }}
-        >
-          <FormattedMessage id="items-table-add-item" />
-        </Button>
+        {state.isAuthorised && (
+          <Button
+            color="secondary"
+            startIcon={<AddIcon />}
+            onClick={() => {
+              setIsOpenDialog(true);
+            }}
+          >
+            <FormattedMessage id="items-table-add-item" />
+          </Button>
+        )}
 
         <GridToolbarExport color="secondary" />
       </Box>
@@ -175,7 +185,7 @@ export const ViewCollection = () => {
       <Typography variant="h5" align="center">
         <FormattedMessage id="items-title-collection" /> {capitalize(nameCollection)}
       </Typography>
-
+      <Typography align="center">{description}</Typography>
       <div className="App">
         <Paper elevation={2} style={{ width: '100%', marginTop: '10px', overflow: 'hidden' }}>
           <DataGrid

@@ -15,6 +15,7 @@ import { dateFormats } from '../../shared/constants/dataFormats';
 import { SnackCreate } from './CreateCollection/Snack/Snack';
 
 export default function Collections() {
+  const { state } = useContext(AppContext);
   const navigate = useNavigate();
   const { userId } = useParams();
   const {
@@ -55,15 +56,17 @@ export default function Collections() {
             );
           })}
       </Masonry>
-      <Box className={classes.buttonWrap}>
-        <Fab
-          color="secondary"
-          className={classes.buttonAdd}
-          onClick={() => navigate(`${routes.COLLECTIONS_ROOT}/${userId}/create`)}
-        >
-          <AddIcon />
-        </Fab>
-      </Box>
+      {state.isAuthorised && (
+        <Box className={classes.buttonWrap}>
+          <Fab
+            color="secondary"
+            className={classes.buttonAdd}
+            onClick={() => navigate(`${routes.COLLECTIONS_ROOT}/${userId}/create`)}
+          >
+            <AddIcon />
+          </Fab>
+        </Box>
+      )}
       <SnackCreate
         message="card-collection-snack-deleted"
         isOpen={isOpenSnack}

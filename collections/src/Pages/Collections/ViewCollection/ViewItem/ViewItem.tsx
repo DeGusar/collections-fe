@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import date from 'date-and-time';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import axios from 'axios';
@@ -21,14 +21,11 @@ import { dateFormats } from '../../../../shared/constants/dataFormats';
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import { Comments } from './Comments/Comments';
 import localStorageKeys from '../../../../shared/constants/localStorageKeys';
+import { AppContext } from '../../../../app/context/AppContext';
 
 export const ViewItem = () => {
+  const { state } = useContext(AppContext);
   const refToItem = useRef<HTMLDivElement>(null);
-  const executeScroll = () => {
-    if (refToItem.current) {
-      refToItem.current.scrollIntoView({ block: 'center' });
-    }
-  };
   const { idItem } = useParams();
   const userId = localStorage.getItem(localStorageKeys.USER_ID);
   const [likes, setLikes] = useState([] as string[]);
@@ -38,6 +35,11 @@ export const ViewItem = () => {
   const [tags, setTags] = useState([] as string[]);
   const [comments, setComments] = useState([] as CommentType[]);
 
+  const executeScroll = () => {
+    if (refToItem.current) {
+      refToItem.current.scrollIntoView({ block: 'center' });
+    }
+  };
   const getLikes = async () => {
     const { data } = await getItemByIdItem(idItem as string);
     setLikes(data.likes);
@@ -155,20 +157,24 @@ export const ViewItem = () => {
             }}
           >
             <Box sx={{ height: '100%' }}></Box>
-            <IconButton
-              onClick={() => {
-                setIsScroll(true);
-                setTimeout(() => setIsScroll(false), 500);
-              }}
-            >
-              <AddCommentIcon />
-            </IconButton>
+            {state.isAuthorised && (
+              <IconButton
+                onClick={() => {
+                  setIsScroll(true);
+                  setTimeout(() => setIsScroll(false), 500);
+                }}
+              >
+                <AddCommentIcon />
+              </IconButton>
+            )}
             <IconButton
               sx={{ marginLeft: '0' }}
               color={likes.includes(userId as string) ? 'error' : 'default'}
               onClick={async () => {
-                await likesUpdate(idItem as string, userId as string);
-                await getLikes();
+                if (state.isAuthorised) {
+                  await likesUpdate(idItem as string, userId as string);
+                  await getLikes();
+                } else return;
               }}
             >
               <FavoriteIcon />
@@ -179,15 +185,17 @@ export const ViewItem = () => {
           </CardActions>
         </CardContent>
       </Card>
-      <Comments
-        isScroll={isScroll}
-        comments={comments}
-        handleClick={() => {
-          getComments();
-          setIsScroll(true);
-          setTimeout(() => setIsScroll(false), 100);
-        }}
-      ></Comments>
+      {state.isAuthorised && (
+        <Comments
+          isScroll={isScroll}
+          comments={comments}
+          handleClick={() => {
+            getComments();
+            setIsScroll(true);
+            setTimeout(() => setIsScroll(false), 100);
+          }}
+        ></Comments>
+      )}
     </Container>
   );
 };

@@ -12,7 +12,7 @@ type BreadCrumpsType = {
 
 export const BreadCrumps = ({ currentPage }: BreadCrumpsType) => {
   const {
-    state: { theme },
+    state: { theme, isAuthorised },
   } = useContext(AppContext);
   const classes = useStyles(theme);
   const { userId } = useParams();
@@ -21,9 +21,12 @@ export const BreadCrumps = ({ currentPage }: BreadCrumpsType) => {
       <NavLink className={classes.navLink} to="/">
         <FormattedMessage id="breadctumps-home" />
       </NavLink>
-      <NavLink className={classes.navLink} to={`${routes.COLLECTIONS_ROOT}/${userId}`}>
-        <FormattedMessage id="breadcrumps-collections" />
-      </NavLink>
+
+      {isAuthorised && (
+        <NavLink className={classes.navLink} to={`${routes.COLLECTIONS_ROOT}/${userId}`}>
+          <FormattedMessage id="breadcrumps-collections" />
+        </NavLink>
+      )}
       <Typography sx={{ textDecoration: 'underline' }}>
         <FormattedMessage id={currentPage} />
       </Typography>

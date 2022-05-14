@@ -38,6 +38,7 @@ export const DrawerSettings = () => {
         <ButtonGroup size="large" sx={{ width: '100%', marginBottom: '10px' }}>
           <Button
             fullWidth
+            color="inherit"
             onClick={() => {
               dispatch({ type: 'setTheme', payload: lightTheme });
               localStorage.setItem(localStorageKeys.THEME, 'light');
@@ -49,6 +50,7 @@ export const DrawerSettings = () => {
           </Button>
           <Button
             fullWidth
+            color="inherit"
             onClick={() => {
               dispatch({ type: 'setTheme', payload: darkTheme });
               localStorage.setItem(localStorageKeys.THEME, 'dark');
@@ -66,6 +68,7 @@ export const DrawerSettings = () => {
           <Button
             size="large"
             fullWidth
+            color="inherit"
             variant="text"
             className={state.currentLocale === locales.EN ? classes.select : classes.button}
             onClick={() => {
@@ -78,6 +81,7 @@ export const DrawerSettings = () => {
           <Button
             size="large"
             fullWidth
+            color="inherit"
             variant="text"
             className={state.currentLocale === locales.RU ? classes.select : classes.button}
             onClick={() => {

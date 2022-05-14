@@ -104,6 +104,7 @@ export type ItemsRowsType = {
 };
 
 export type ItemsDataType = {
+  _id?: string;
   nameItem?: string;
   idCollection?: string;
   userId?: string;
@@ -158,4 +159,23 @@ export type CommentPropsType = {
 export type TagTypeProps = {
   tags: TagType[];
   handleClick: (tag: TagType) => void;
+};
+
+export type CollectionsResultProps = {
+  collections: CardCollectionType[];
+};
+
+export type ItemsResultProps = {
+  items: ItemsDataType[];
+};
+
+export type CardPropsType = {
+  nameCollection: string;
+  description?: string;
+  theme?: string;
+  imageSrc?: string;
+  createdAt: Date | string;
+  userId?: string;
+  _id: string;
+  sendRequest: () => void;
 };
