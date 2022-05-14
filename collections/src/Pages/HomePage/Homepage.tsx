@@ -45,7 +45,7 @@ export default function Homepage() {
   }, []);
 
   const handleClickOnTag = (tag: TagType) => {
-    console.log(tag);
+    navigate(`${routes.SEARCH_ROOT}/tags/${tag.value}`);
   };
 
   return (

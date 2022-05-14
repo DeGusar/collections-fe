@@ -14,6 +14,7 @@ import {
 import { AlertColor } from '@mui/material';
 import { UsersType } from '../../types';
 import localStorageKeys from '../../shared/constants/localStorageKeys';
+
 export const AdminPanel = () => {
   const role = localStorage.getItem(localStorageKeys.ROLE);
   const id = localStorage.getItem(localStorageKeys.USER_ID);
@@ -22,7 +23,6 @@ export const AdminPanel = () => {
   const [messageSnack, setMessageSnack] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isOpenSnack, setIsOpenSnack] = useState(false);
-
   const [selectedIds, setSelectedIds] = useState([] as string[]);
 
   useEffect(() => {

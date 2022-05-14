@@ -23,6 +23,7 @@ import { EditCollection } from './Pages/Collections/EditCollection/EditCollectio
 import { StyledEngineProvider } from '@mui/material/styles';
 import { ViewItem } from './Pages/Collections/ViewCollection/ViewItem/ViewItem';
 import { Search } from './Pages/Search/Search';
+import { SearchByTag } from './Pages/SearchByTag/SearchByTag';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState as StateReducer);
@@ -40,6 +41,7 @@ function App() {
                 <Route path={routes.COLLECTIONS} element={<Collections />} />
                 <Route path={routes.COLLECTION_CREATE} element={<CreateCollection />} />
                 <Route path={routes.SEARCH} element={<Search />} />
+                <Route path={routes.SEARCH_BY_TAG} element={<SearchByTag />} />
                 <Route path={routes.COLLECTION_BY_ID} element={<ViewCollection />}>
                   <Route path={routes.COLLECTION_ITEM} element={<ViewItem />} />
                 </Route>
