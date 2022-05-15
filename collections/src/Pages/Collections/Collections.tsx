@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Fab, Box, Container } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import React, { useContext, useEffect, useState } from 'react';
@@ -32,7 +33,6 @@ export default function Collections() {
 
   useEffect(() => {
     getCollections();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   return (

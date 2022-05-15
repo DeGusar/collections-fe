@@ -25,9 +25,11 @@ import { BreadCrumps } from '../BreadCrumps/BreadCrumps';
 import routes from '../../../shared/constants/routes';
 import { EditItem } from './EditItem/EditItem';
 import { AppContext } from '../../../app/context/AppContext';
+import localStorageKeys from '../../../shared/constants/localStorageKeys';
 
 export const ViewCollection = () => {
   const { userId, idCollection } = useParams();
+  const user = localStorage.getItem(`${localStorageKeys.USER_ID}`);
   const navigate = useNavigate();
   const intl = useIntl();
   const { state } = useContext(AppContext);
@@ -89,7 +91,7 @@ export const ViewCollection = () => {
           };
           return (
             <>
-              {state.isAuthorised && (
+              {state.isAuthorised && userId === user && (
                 <>
                   <IconButton
                     color="inherit"
@@ -149,7 +151,7 @@ export const ViewCollection = () => {
           columnGap: '20px',
         }}
       >
-        {state.isAuthorised && (
+        {state.isAuthorised && userId === user && (
           <Button
             color="secondary"
             startIcon={<AddIcon />}
@@ -181,7 +183,6 @@ export const ViewCollection = () => {
 
   return (
     <>
-      <BreadCrumps currentPage={'items-breadcrumps-currentPage'} />
       <Typography variant="h5" align="center">
         <FormattedMessage id="items-title-collection" /> {capitalize(nameCollection)}
       </Typography>

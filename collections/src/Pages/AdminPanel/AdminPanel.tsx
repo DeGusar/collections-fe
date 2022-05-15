@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { DataGrid, GridRowParams } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridColumns,
+  GridRenderCellParams,
+  GridRowParams,
+  GridValueFormatterParams,
+} from '@mui/x-data-grid';
 import LinearProgress from '@mui/material/LinearProgress';
 import { ControlBar } from './ControlsBar/ControlsBar';
-import { columns } from './Colums/colums';
 import { Snack } from './Snack/Snack';
+import date from 'date-and-time';
 import {
   blockUsers,
   deleteUsers,
@@ -11,11 +17,74 @@ import {
   setAdmin,
   unblockUsers,
 } from '../../shared/api/authApi';
-import { AlertColor } from '@mui/material';
+import { AlertColor, IconButton } from '@mui/material';
 import { UsersType } from '../../types';
 import localStorageKeys from '../../shared/constants/localStorageKeys';
+import { useNavigate } from 'react-router-dom';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { dateFormats } from '../../shared/constants/dataFormats';
 
 export const AdminPanel = () => {
+  const navigate = useNavigate();
+  const columns: GridColumns = [
+    {
+      field: '_id',
+      headerName: 'ID',
+      flex: 0.5,
+    },
+    { field: 'firstName', headerName: 'First name', flex: 0.7 },
+    { field: 'lastName', headerName: 'Last name', flex: 0.7 },
+    { field: 'email', headerName: 'Email adress', flex: 1 },
+    {
+      field: 'registration',
+      headerName: 'Registration',
+      type: 'date',
+      flex: 1,
+      valueFormatter: (params: GridValueFormatterParams<number>) => {
+        const dateParams = new Date(params.value);
+        return date.format(dateParams, `${dateFormats.DATE}`);
+      },
+    },
+    {
+      field: 'lastVisit',
+      headerName: 'Last visit',
+      type: 'dateTime',
+      flex: 1,
+      valueFormatter: (params: GridValueFormatterParams<number>) => {
+        const dateParams = new Date(params.value);
+        return date.format(dateParams, `${dateFormats.TIME}`);
+      },
+    },
+    { field: 'role', headerName: 'Role', flex: 0.5 },
+    { field: 'status', headerName: 'Status', flex: 0.5 },
+    {
+      field: 'Actions',
+      flex: 0.5,
+      minWidth: 120,
+
+      renderCell: (params: GridRenderCellParams) => {
+        const onClickOpen = () => {
+          console.log('sdf');
+          const userId = params.row._id;
+          navigate(`/collections/${userId}`);
+        };
+        return (
+          <IconButton
+            color="inherit"
+            sx={{ opacity: '0.6' }}
+            onClick={(e) => {
+              e.preventDefault();
+              onClickOpen();
+            }}
+            size="small"
+          >
+            <OpenInNewIcon />
+          </IconButton>
+        );
+      },
+    },
+  ];
+
   const role = localStorage.getItem(localStorageKeys.ROLE);
   const id = localStorage.getItem(localStorageKeys.USER_ID);
   const [users, setUsers] = useState([]);
