@@ -24,9 +24,11 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import { ViewItem } from './Pages/Collections/ViewCollection/ViewItem/ViewItem';
 import { Search } from './Pages/Search/Search';
 import { SearchByTag } from './Pages/SearchByTag/SearchByTag';
+import { RequireAuth } from './app/hoc/RequireAuth';
+import { RequireAdminRole } from './app/hoc/RequireAdminRole';
 
-/* export const socket = new WebSocket('wss://task5-5.herokuapp.com/'); */
-export const socket = new WebSocket('ws://localhost:3010/');
+export const socket = new WebSocket('wss://task5-5.herokuapp.com/');
+/* export const socket = new WebSocket('ws://localhost:3010/'); */
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState as StateReducer);
@@ -43,14 +45,35 @@ function App() {
                 <Route path={routes.HOME} element={<Homepage />} />
                 <Route path={routes.AUTHORISATION} element={<Authorisation />} />
                 <Route path={routes.COLLECTIONS} element={<Collections />} />
-                <Route path={routes.COLLECTION_CREATE} element={<CreateCollection />} />
+                <Route
+                  path={routes.COLLECTION_CREATE}
+                  element={
+                    <RequireAuth>
+                      <CreateCollection />
+                    </RequireAuth>
+                  }
+                />
                 <Route path={routes.SEARCH} element={<Search />} />
                 <Route path={routes.SEARCH_BY_TAG} element={<SearchByTag />} />
                 <Route path={routes.COLLECTION_BY_ID} element={<ViewCollection />}>
                   <Route path={routes.COLLECTION_ITEM} element={<ViewItem />} />
                 </Route>
-                <Route path={routes.COLLECTION_EDIT} element={<EditCollection />} />
-                <Route path={routes.ADMIN} element={<AdminPanel />} />
+                <Route
+                  path={routes.COLLECTION_EDIT}
+                  element={
+                    <RequireAuth>
+                      <EditCollection />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path={routes.ADMIN}
+                  element={
+                    <RequireAdminRole>
+                      <AdminPanel />
+                    </RequireAdminRole>
+                  }
+                />
                 <Route path="*" element={<Notfoundpage />} />
               </Routes>
               <DrawerSettings />

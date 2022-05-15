@@ -186,3 +186,7 @@ export type userType = {
   recipient?: string;
   userId?: string;
 };
+
+export type RequireAuthProp = {
+  children: JSX.Element;
+};

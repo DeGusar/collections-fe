@@ -79,7 +79,7 @@ export default function SignUp(props: {
             <Grid container mt={1} spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
+                  autoComplete="firstName"
                   name="firstName"
                   required
                   fullWidth
