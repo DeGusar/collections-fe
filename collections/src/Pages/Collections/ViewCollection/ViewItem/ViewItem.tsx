@@ -45,7 +45,7 @@ export const ViewItem = () => {
       const { event } = message[0] || message;
       switch (event) {
         case 'message':
-          if (idItem === message.idItem) {
+          if (idItem === message.idItem && userId !== message.userId) {
             handleClickComment();
           }
           break;
@@ -85,10 +85,12 @@ export const ViewItem = () => {
 
   useEffect(() => {
     const getImage = async (tags: string[]) => {
-      const { data } = await axios.get(
-        `https://api.unsplash.com/photos/random?query=${tags}&client_id=_Im-M8qZUbqaAv5OeazW9wZ-K_phlWaLcOV77Lqt2VA`
-      );
-      setImgUrl(data.urls.regular);
+      try {
+        const { data } = await axios.get(
+          `https://api.unsplash.com/photos/random?query=${tags}&client_id=_Im-M8qZUbqaAv5OeazW9wZ-K_phlWaLcOV77Lqt2VA`
+        );
+        setImgUrl(data.urls.regular);
+      } catch (e) {}
     };
     tags.length > 0 && getImage(tags);
     setTimeout(executeScroll, 100);
@@ -219,7 +221,6 @@ export const ViewItem = () => {
           isScroll={isScroll}
           comments={comments}
           handleClick={() => {
-            console.log('click');
             socket.send(
               JSON.stringify({
                 event: 'message',
@@ -227,6 +228,7 @@ export const ViewItem = () => {
                 userId,
               })
             );
+            handleClickComment();
           }}
         ></Comments>
       )}

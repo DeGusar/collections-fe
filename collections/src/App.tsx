@@ -24,7 +24,8 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import { ViewItem } from './Pages/Collections/ViewCollection/ViewItem/ViewItem';
 import { Search } from './Pages/Search/Search';
 import { SearchByTag } from './Pages/SearchByTag/SearchByTag';
-/* const socket = new WebSocket('wss://task5-5.herokuapp.com/'); */
+
+/* export const socket = new WebSocket('wss://task5-5.herokuapp.com/'); */
 export const socket = new WebSocket('ws://localhost:3010/');
 
 function App() {
