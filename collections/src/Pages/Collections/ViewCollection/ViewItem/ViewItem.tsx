@@ -16,24 +16,46 @@ import { useParams } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import axios from 'axios';
 import { getItemByIdItem, likesUpdate } from '../../../../shared/api/itemsApi';
-import { CommentType, ItemsDataType } from '../../../../types';
+import { CommentType, ItemsDataType, userType } from '../../../../types';
 import { dateFormats } from '../../../../shared/constants/dataFormats';
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import { Comments } from './Comments/Comments';
 import localStorageKeys from '../../../../shared/constants/localStorageKeys';
 import { AppContext } from '../../../../app/context/AppContext';
+import { socket } from '../../../../App';
 
 export const ViewItem = () => {
   const { state } = useContext(AppContext);
   const refToItem = useRef<HTMLDivElement>(null);
   const { idItem } = useParams();
-  const userId = localStorage.getItem(localStorageKeys.USER_ID);
+  const userId = localStorage.getItem(localStorageKeys.USER_ID) as string;
   const [likes, setLikes] = useState([] as string[]);
   const [isScroll, setIsScroll] = useState(false);
   const [itemData, setItemData] = useState([] as ItemsDataType);
   const [imgUrl, setImgUrl] = useState('');
   const [tags, setTags] = useState([] as string[]);
   const [comments, setComments] = useState([] as CommentType[]);
+
+  function connect(user: userType) {
+    socket.onopen = () => {
+      socket.send(JSON.stringify(user));
+    };
+    socket.onmessage = (even) => {
+      const message = JSON.parse(even.data);
+      const { event } = message[0] || message;
+      switch (event) {
+        case 'message':
+          if (idItem === message.idItem) {
+            handleClickComment();
+          }
+          break;
+      }
+    };
+  }
+
+  useEffect(() => {
+    connect({ event: 'connection', userId, idItem });
+  }, [idItem]);
 
   const executeScroll = () => {
     if (refToItem.current) {
@@ -58,6 +80,7 @@ export const ViewItem = () => {
       setLikes(data.likes);
     };
     getData();
+    return setComments([]);
   }, [idItem]);
 
   useEffect(() => {
@@ -71,6 +94,12 @@ export const ViewItem = () => {
     setTimeout(executeScroll, 100);
     return setImgUrl('');
   }, [tags]);
+
+  const handleClickComment = async () => {
+    await getComments();
+    setIsScroll(true);
+    setTimeout(() => setIsScroll(false), 100);
+  };
 
   return (
     <Container sx={{ my: '20px' }} maxWidth="lg">
@@ -190,9 +219,14 @@ export const ViewItem = () => {
           isScroll={isScroll}
           comments={comments}
           handleClick={() => {
-            getComments();
-            setIsScroll(true);
-            setTimeout(() => setIsScroll(false), 100);
+            console.log('click');
+            socket.send(
+              JSON.stringify({
+                event: 'message',
+                idItem,
+                userId,
+              })
+            );
           }}
         ></Comments>
       )}

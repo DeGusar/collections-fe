@@ -179,3 +179,10 @@ export type CardPropsType = {
   _id: string;
   sendRequest: () => void;
 };
+
+export type userType = {
+  idItem?: string;
+  event: string;
+  recipient?: string;
+  userId?: string;
+};
