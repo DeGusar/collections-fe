@@ -57,7 +57,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     opacity: '1',
     transition: 'all 1s',
     '@media (max-width:1200px)': {
-      marginLeft: '10px',
+      margin: '10px',
       width: '300px',
     },
   },
@@ -90,5 +90,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     '@media (max-width:1200px)': {
       marginLeft: '10px',
     },
+  },
+  menuButton: {
+    color: 'white',
+  },
+  menu: {
+    width: '300px',
   },
 }));
