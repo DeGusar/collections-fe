@@ -97,7 +97,19 @@
     "view-item-comments-submit": "Отправить",
 
     "search-query": "Результаты поиска по запросу:",
-    "search-tag": "Результаты поиска для тега:"
+    "search-tag": "Результаты поиска для тега:",
+
+    "sighup-firstname-required": "Укажите свое имя",
+    "signup-email-required": "Укажите электронную почту",
+    "sighup-lastname-required": "Укажите свою фамили.",
+    "signup-password-min-length": "Пароль должен быть не короче 8 символов",
+    "signup-wrong-name": "Разрешены символы A-z",
+    "signup-wrong-email": "Введите email формата ***@**.**",
+    "signup-password-required": "Введите пароль",
+    "signup-email-already-exist": "Пользователь с таким электронным адресом уже существует",
+
+    "signin-wrong-password": "Неверный пароль или адрес почты",
+    "signin-blocked-user": "Ваш аккаунт заблокирован"
   
     
     

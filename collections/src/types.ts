@@ -190,3 +190,15 @@ export type userType = {
 export type RequireAuthProp = {
   children: JSX.Element;
 };
+
+export type SignUpDataType = {
+  firstName: string;
+  lastName: string;
+  password: string;
+  email: string;
+};
+
+export type SignInDataType = {
+  password: string;
+  email: string;
+};

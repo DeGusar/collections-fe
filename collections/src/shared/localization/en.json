@@ -97,7 +97,19 @@
    "view-item-comments-submit": "Submit",
 
    "search-query": "Search results for query:",
-   "search-tag": "Search results for tag:"
+   "search-tag": "Search results for tag:",
+
+   "sighup-firstname-required": "Please specify your firstname",
+   "signup-email-required": "Please specify email",
+   "sighup-lastname-required": "Please specify your lastname",
+   "signup-password-required": "Please specify password",
+   "signup-password-min-length": "Password shoulp be longer  8 chars",
+   "signup-wrong-name": "Valid characters are A-z",
+   "signup-wrong-email": "Specify email like ***@**.**",
+   "signup-email-already-exist": "User with this email already exist",
+
+   "signin-wrong-password": "Wrong password or email",
+   "signin-blocked-user": "Your account is blocked"
   
 
 
