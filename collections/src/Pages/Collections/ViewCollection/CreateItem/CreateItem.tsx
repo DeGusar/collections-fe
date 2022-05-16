@@ -110,7 +110,7 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
           filterSelectedOptions
           autoComplete={true}
           options={tagCloud}
-          onChange={(event, value, situation, option) => {
+          onChange={(event, value) => {
             setTags(value);
           }}
           fullWidth

@@ -21,7 +21,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { DialogDelete } from './DialogDelete/DialogDelete';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { BreadCrumps } from '../BreadCrumps/BreadCrumps';
 import routes from '../../../shared/constants/routes';
 import { EditItem } from './EditItem/EditItem';
 import { AppContext } from '../../../app/context/AppContext';
@@ -30,6 +29,8 @@ import localStorageKeys from '../../../shared/constants/localStorageKeys';
 export const ViewCollection = () => {
   const { userId, idCollection } = useParams();
   const user = localStorage.getItem(`${localStorageKeys.USER_ID}`);
+  const role = localStorage.getItem(`${localStorageKeys.ROLE}`);
+
   const navigate = useNavigate();
   const intl = useIntl();
   const { state } = useContext(AppContext);
@@ -91,7 +92,7 @@ export const ViewCollection = () => {
           };
           return (
             <>
-              {state.isAuthorised && userId === user && (
+              {((state.isAuthorised && userId === user) || role === 'admin') && (
                 <>
                   <IconButton
                     color="inherit"
@@ -151,7 +152,7 @@ export const ViewCollection = () => {
           columnGap: '20px',
         }}
       >
-        {state.isAuthorised && userId === user && (
+        {((state.isAuthorised && userId === user) || role === 'admin') && (
           <Button
             color="secondary"
             startIcon={<AddIcon />}
