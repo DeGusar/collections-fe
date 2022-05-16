@@ -5,6 +5,9 @@ export const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     alignContent: 'center',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    overflow: 'hidden',
     flexWrap: 'wrap',
     '& span': {
       cursor: 'pointer',

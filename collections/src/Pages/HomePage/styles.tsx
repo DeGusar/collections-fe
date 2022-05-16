@@ -18,6 +18,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     top: '50%',
     zIndex: '50',
     transform: 'translateY(-50%)',
+    '@media (max-width:900px)': {
+      position: 'relative',
+    },
   },
   containerWelcome: {
     position: 'relative',
@@ -55,9 +58,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
       height: '3px',
       backgroundColor: '#710707',
     },
+    '@media (max-width:1200px)': {
+      margin: '30px 0',
+    },
+    '@media (max-width:900px)': {
+      margin: '20px 0',
+    },
   },
   latestCardsContainer: {
     paddingTop: '70px',
+    '@media (max-width:1200px)': {
+      paddingTop: '40px',
+    },
   },
   collectionCard: {
     width: '100%',
@@ -94,6 +106,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
       width: '70%',
       transition: 'all 0.5s ease-out',
     },
+    '@media (max-width:1200px)': {
+      lineHeight: '27px',
+      fontSize: '25px',
+    },
+    '@media (max-width:900)': {
+      lineHeight: '20px',
+      fontSize: '20px',
+    },
   },
   cardImage: {
     width: '100%',
@@ -108,6 +128,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: '100',
     fontSize: '22px',
     lineHeight: '26px',
+    '@media (max-width:1200px)': {
+      lineHeight: '20px',
+      fontSize: '20px',
+    },
+    '@media (max-width:900)': {
+      lineHeight: '16px',
+      fontSize: '16px',
+    },
   },
   cardDate: {
     paddingTop: '11px',

@@ -1,6 +1,7 @@
+import { Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   footerSection: {
     backgroundColor: 'black',
   },
@@ -9,12 +10,26 @@ export const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     alignContent: 'center',
     padding: '40px 0',
+    [theme.breakpoints.down('md')]: {
+      padding: '20px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      padding: '15px',
+    },
   },
   content: {
     fontWeight: '100',
     fontSize: '22px',
     lineHeight: '22px',
     color: 'white',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '18px',
+      lineHeight: '18px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '14px',
+      lineHeight: '14px',
+    },
   },
   githubLogo: {
     width: '45px',
@@ -27,6 +42,10 @@ export const useStyles = makeStyles(() => ({
     '&:hover': {
       transform: 'scale(1.1)',
       transition: 'all 0.5s',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '25px',
+      height: '25px',
     },
   },
 }));

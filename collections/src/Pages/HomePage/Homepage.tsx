@@ -73,12 +73,17 @@ export default function Homepage() {
           <Typography variant="h2" className={classes.latestTitle}>
             Latest Collections
           </Typography>
-          <Grid container spacing={7} className={classes.latestCardsContainer}>
+          <Grid
+            container
+            spacing={{ xs: 1, md: 3, xl: 7 }}
+            className={classes.latestCardsContainer}
+          >
             {latestCollections.map((collection) => {
               return (
                 <Grid
                   item
-                  xs={6}
+                  xs={12}
+                  md={6}
                   xl={4}
                   className={classes.collectionCard}
                   onClick={() =>
@@ -111,12 +116,17 @@ export default function Homepage() {
           <Typography variant="h1" className={classes.biggestTitle}>
             Biggest collections
           </Typography>
-          <Grid container spacing={7} className={classes.latestCardsContainer}>
+          <Grid
+            container
+            spacing={{ xs: 1, md: 3, xl: 7 }}
+            className={classes.latestCardsContainer}
+          >
             {biggestCollections.map((collection) => {
               return (
                 <Grid
                   item
-                  xs={6}
+                  xs={12}
+                  md={6}
                   xl={4}
                   className={classes.collectionBiggestCard}
                   onClick={() =>

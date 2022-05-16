@@ -37,7 +37,11 @@ export default function Collections() {
 
   return (
     <Container className={classes.container} maxWidth="xl">
-      <Masonry sx={{ margin: '0', alignContent: 'start' }} columns={4} spacing={2}>
+      <Masonry
+        sx={{ margin: '0', alignContent: 'start' }}
+        columns={{ xs: 1, sm: 2, lg: 4 }}
+        spacing={2}
+      >
         {collections.length > 0 &&
           collections.map((collection: CardCollectionType) => {
             const dateParams = new Date(collection.createdAt);

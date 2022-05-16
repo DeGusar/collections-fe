@@ -23,6 +23,9 @@ export const useStyles = makeStyles(() => ({
     transition: '2s',
     cursor: 'pointer',
     pointerEvents: 'all',
+    '@media (max-width:1200px)': {
+      display: 'none',
+    },
   },
   arrowTop: {
     width: '25px',
