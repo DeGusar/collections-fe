@@ -111,7 +111,7 @@ export function Header() {
             <SearchIcon />
           </IconButton>
         </Paper>
-        <Box ml={4}>
+        <Box className={classes.controls}>
           <IconButton
             onClick={() => {
               setIsSearchBar((prev) => !prev);

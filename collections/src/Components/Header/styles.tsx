@@ -9,6 +9,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     columnGap: '30px',
     ml: 2,
+    '@media (max-width:1200px)': {
+      columnGap: '10px',
+    },
   },
   navLink: {
     position: 'relative',
@@ -53,6 +56,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     border: `1px solid ${theme.palette.text.primary}`,
     opacity: '1',
     transition: 'all 1s',
+    '@media (max-width:1200px)': {
+      marginLeft: '10px',
+      width: '300px',
+    },
   },
   active: {
     color: `#b38749`,
@@ -76,6 +83,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
       transform: 'scale(1.1)',
       transition: 'all 0.5s',
       color: '#b38749',
+    },
+  },
+  controls: {
+    marginLeft: '30px',
+    '@media (max-width:1200px)': {
+      marginLeft: '10px',
     },
   },
 }));
