@@ -11,9 +11,9 @@ export const useStyles = makeStyles(() => ({
     width: '100%',
     overflow: 'hidden',
     '& img': {
-      height: 'auto !important',
-      width: '100% !important',
-      maxHeight: 'calc(100vh - 64px)',
+      height: 'auto',
+      width: '100%',
+      /*  maxHeight: 'calc(100vh - 64px)', */
     },
     '&::before': {
       content: '""',

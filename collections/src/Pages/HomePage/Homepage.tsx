@@ -55,7 +55,9 @@ export default function Homepage() {
           <Grid container className={classes.containerWelcome}>
             <Grid item xs={12} md={6} xl={5} className={classes.content} sx={{ zIndex: '25' }}>
               <Box>
-                <Typography variant="h1">Welcome to UStore</Typography>
+                <Typography className={classes.welcomeHeader} variant="h1">
+                  Welcome to UStore
+                </Typography>
                 <Typography className={classes.welcomeContent} variant="h3">
                   UStore is an online social platform for collectors. Create collections, add items
                   and share with your friends

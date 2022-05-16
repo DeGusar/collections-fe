@@ -4,12 +4,11 @@ import { Theme } from '@mui/material';
 export const useStyles = makeStyles((theme: Theme) => ({
   welcome: {
     width: '100%',
-    height: 'calc(100vh - 64px)',
+    minHeight: '100%',
     backgroundColor: 'black',
   },
   wrapper: {
-    height: '100%',
-    maxHeight: 'calc(100vh - 64px)',
+    minHeight: '100%',
   },
   content: {
     position: 'absolute',
@@ -20,6 +19,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     transform: 'translateY(-50%)',
     '@media (max-width:900px)': {
       position: 'relative',
+      transform: 'none',
+      left: 'none',
+      top: 'none',
+      margin: '20px',
     },
   },
   containerWelcome: {
@@ -28,9 +31,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     justifyContent: 'end',
   },
+  welcomeHeader: {
+    textAlign: 'center',
+  },
   welcomeContent: {
     marginTop: '20px',
     color: 'white',
+    textAlign: 'center',
   },
   swiperContainer: {
     cursor: 'grab',
