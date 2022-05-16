@@ -20,7 +20,6 @@ export const Search = () => {
       const { data } = await searchByQuery(query as string);
       setItemsResult(data.items);
       setCollectionsResult(data.collections);
-      console.log(data.items, data.collections);
     };
     getSearchResult();
   }, [query]);

@@ -60,7 +60,6 @@ export const EditItem = ({ isOpenDialog, handleClick, refreshView, idItem }: Edi
 
   const onSubmit = async (data: StringMap) => {
     for (const tag of tagsForRemoving) {
-      console.log(tag);
       await deleteTagById(idItem, tag);
     }
     const additionalData = Object.keys(data)

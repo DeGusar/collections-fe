@@ -111,9 +111,6 @@ export const CreateItem = ({ isOpenDialog, handleClick, refreshView }: CreateIte
           autoComplete={true}
           options={tagCloud}
           onChange={(event, value, situation, option) => {
-            if (situation === 'removeOption') {
-              console.log(option?.option);
-            }
             setTags(value);
           }}
           fullWidth

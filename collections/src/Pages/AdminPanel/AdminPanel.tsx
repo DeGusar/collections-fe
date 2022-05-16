@@ -64,7 +64,6 @@ export const AdminPanel = () => {
 
       renderCell: (params: GridRenderCellParams) => {
         const onClickOpen = () => {
-          console.log('sdf');
           const userId = params.row._id;
           navigate(`/collections/${userId}`);
         };

@@ -32,20 +32,22 @@ export const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'end',
   },
   welcomeHeader: {
-    textAlign: 'center',
+    '@media (max-width:900px)': {
+      textAlign: 'center',
+    },
   },
   welcomeContent: {
     marginTop: '20px',
     color: 'white',
-    textAlign: 'center',
+    '@media (max-width:900px)': {
+      textAlign: 'center',
+    },
   },
   swiperContainer: {
     cursor: 'grab',
     position: 'relative',
-    right: '0',
-    bottom: '0',
-    top: '0',
     width: '100%',
+    margin: '30px 0',
   },
   latest: {
     backgroundColor: theme.palette.background.default,
