@@ -256,4 +256,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
       backgroundColor: '#710707',
     },
   },
+  loader: {
+    backgroundColor: 'black',
+    width: '100%',
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  visible: {
+    visibility: 'visible',
+  },
+  hidden: {
+    visibility: 'hidden',
+  },
 }));

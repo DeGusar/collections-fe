@@ -13,6 +13,7 @@ import routes from '../../shared/constants/routes';
 import { TagsCloud } from './TagCloud/TagCloud';
 import { Footer } from '../../Components/Footer/Footer';
 import { ButtonToTop } from './ButtonToTop/ButtonToTop';
+import { Triangle } from 'react-loader-spinner';
 
 export default function Homepage() {
   const { state } = useContext(AppContext);
@@ -22,6 +23,7 @@ export default function Homepage() {
   const [latestCollections, setLatestCollections] = useState([] as CardCollectionType[]);
   const [biggestCollections, setBiggestCollections] = useState([] as CardCollectionType[]);
   const [tags, setTags] = useState([] as TagType[]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getCollections = async () => {
@@ -50,7 +52,12 @@ export default function Homepage() {
 
   return (
     <>
-      <Box className={classes.welcome}>
+      {loading && (
+        <Box className={classes.loader}>
+          <Triangle height="100" width="100" color="grey" ariaLabel="loading" />
+        </Box>
+      )}
+      <Box className={loading ? classes.hidden : classes.welcome}>
         <Container className={classes.wrapper} maxWidth="xl">
           <Grid container className={classes.containerWelcome}>
             <Grid item xs={12} md={6} xl={5} className={classes.content} sx={{ zIndex: '25' }}>
@@ -65,7 +72,11 @@ export default function Homepage() {
               </Box>
             </Grid>
             <Grid item xs={12} md={10} xl={9} className={classes.swiperContainer}>
-              <SwiperImages />
+              <SwiperImages
+                handleLoad={() => {
+                  setTimeout(() => setLoading(false), 1000);
+                }}
+              />
             </Grid>
           </Grid>
         </Container>
