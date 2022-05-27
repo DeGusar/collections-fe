@@ -1,6 +1,5 @@
 УСЛОВИЕ КУРСОВОГО ПРОЕКТА
 
-.NET: C#, ASP.NET Core MVC, EntityFramework, SQL Server
 Front: TypeScript/JavaSCript, React, Node.js, MySQL или MongoDB на выбор
 
 Требуется разработать сайт для управления личными коллекциями (книги, марки, значки, виски, etc. — далее в тексте то, из чего состоит коллекция, называется айтемами).
